@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Nécessaire pour formater les dates
 
+import 'create_workout.dart';
+
 class MenuPage extends StatelessWidget {
+  const MenuPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Obtenir la date actuelle
@@ -16,7 +20,10 @@ class MenuPage extends StatelessWidget {
           icon: const Icon(Icons.add), 
           color: Colors.blue.shade100, 
           onPressed: () {
-            // Naviguer vers createWorkoutPage
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreateWorkoutPage()),
+            );
           },
         ),
 

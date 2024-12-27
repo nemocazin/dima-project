@@ -1,0 +1,278 @@
+ID,Exercise Name,Body Part,Exercise Type,Primary Muscle,Secondary Muscle,Calories/Min,Category
+1,Seated Chest Press Machine,Upper Body,Push,Pectorals,Triceps,6,Base
+2,Dumbbell Bench Press,Upper Body,Push,Pectorals,Triceps,6,Base
+3,Barbell Bench Press,Upper Body,Push,Pectorals,Triceps,6,Base
+4,Machine Chest Press,Upper Body,Push,Pectorals,Triceps,5,Base
+5,Decline Dumbbell Press,Upper Body,Push,Pectorals (Lower),Triceps,6,Base
+6,Decline Barbell Press,Upper Body,Push,Pectorals (Lower),Triceps,6,Base
+7,Incline Dumbbell Press,Upper Body,Push,Pectorals (Upper),Triceps,6,Base
+8,Incline Barbell Press,Upper Body,Push,Pectorals (Upper),Triceps,6,Base
+9,Incline Chest Press Machine,Upper Body,Push,Pectorals (Upper),Triceps,5,Base
+10,Wide-Grip Dips with Forward Lean,Upper Body,Push,Pectorals,"Triceps, Shoulders",7,Base
+11,Barbell/Dumbbell Pull-Over,Upper Body,Pull,Pectorals,Lats,5,Base
+12,Pull-Over Across Bench with Barbell/Dumbbell,Upper Body,Pull,Pectorals,Lats,5,Base
+13,Dumbbell Chest Fly,Upper Body,Push,Pectorals,-,5,Advanced
+14,Decline Dumbbell Chest Fly,Upper Body,Push,Pectorals (Lower),-,5,Advanced
+15,Incline Dumbbell Chest Fly,Upper Body,Push,Pectorals (Upper),-,5,Advanced
+16,Pec Deck Machine Fly,Upper Body,Push,Pectorals,-,4,Advanced
+17,Wide-Grip Push-Ups,Upper Body,Push,Pectorals,"Triceps, Shoulders",4,Advanced
+18,Low Pulley Pull-Over,Upper Body,Pull,Pectorals,Lats,5,Advanced
+19,Low Cable Chest Fly,Upper Body,Push,Pectorals,-,5,Finishing
+20,High Cable Chest Fly,Upper Body,Push,Pectorals,-,5,Finishing
+21,Lateral Raise with Cable,Upper Body,Push,Deltoids (Lateral),Trapezius,5,Base
+22,Dumbbell Shoulder Press,Upper Body,Push,Deltoids (Anterior),Triceps,6,Base
+23,Machine Shoulder Press,Upper Body,Push,Deltoids (Anterior),Triceps,5,Base
+24,Military Press with Barbell,Upper Body,Push,Deltoids (Anterior),Triceps,6,Base
+25,Behind-the-Neck Press with Barbell,Upper Body,Push,Deltoids (Posterior),Triceps,6,Base
+26,Low Pulley Reverse Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Base
+27,Dumbbell Rear Delt Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Base
+28,Seated Machine Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Trapezius,5,Base
+29,Seated Low Pulley Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Trapezius,5,Base
+30,Incline Bench Low Pulley Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Trapezius,5,Base
+31,Incline Bench High Pulley Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Trapezius,5,Base
+32,T-Bar Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Rhomboids,6,Base
+33,Barbell Row (Elbows Out),Upper Body,Pull,Deltoids (Posterior),Trapezius,6,Base
+34,Standing Low Pulley Row,Upper Body,Pull,Deltoids (Posterior),Trapezius,5,Base
+35,Upright Row with Wide Barbell Grip,Upper Body,Pull,Deltoids (Lateral),Trapezius,5,Base
+36,Dumbbell Lateral Raise,Upper Body,Push,Deltoids (Lateral),-,5,Advanced
+37,One-Arm Side Lateral Raise (Leaning),Upper Body,Push,Deltoids (Lateral),-,5,Advanced
+38,One-Arm Incline Bench Lateral Raise,Upper Body,Push,Deltoids (Lateral),-,5,Advanced
+39,Arnold Dumbbell Press,Upper Body,Push,Deltoids (Anterior),Triceps,6,Advanced
+40,Bodyweight Reverse Shoulder Press,Upper Body,Push,Deltoids (Posterior),Triceps,6,Advanced
+41,Rear Delt Machine Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Advanced
+42,High Pulley Reverse Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Advanced
+43,One-Arm Lying Rear Delt Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Advanced
+44,Incline Bench Dumbbell Rear Delt Fly,Upper Body,Pull,Deltoids (Posterior),Rhomboids,5,Advanced
+45,Hindu Push-Ups,Upper Body,Push,Deltoids (Anterior),"Pectorals, Triceps",7,Advanced
+46,Dumbbell Front Raise,Upper Body,Push,Deltoids (Anterior),-,5,Finishing
+47,Barbell Front Raise,Upper Body,Push,Deltoids (Anterior),-,5,Finishing
+48,Front Raise with Cable,Upper Body,Push,Deltoids (Anterior),-,5,Finishing
+49,Incline Bench Front Raise (Dumbbell/Barbell),Upper Body,Push,Deltoids (Anterior),-,5,Finishing
+50,Machine Lateral Raise,Upper Body,Push,Deltoids (Lateral),-,5,Finishing
+51,L-Fly Lying at Low Pulley,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+52,Seated L-Fly at Low Pulley,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+53,L-Fly with Dumbbell,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+54,Standing L-Fly at Low Pulley,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+55,External Rotation with Barbell (Standing),Upper Body,Pull,Rotator Cuff,-,3,Finishing
+56,Internal Rotation at Low Pulley (Lying),Upper Body,Pull,Rotator Cuff,-,3,Finishing
+57,Seated Internal Rotation at Low Pulley,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+58,Internal Rotation with Dumbbell,Upper Body,Pull,Rotator Cuff,-,3,Finishing
+59,Internal Rotation at Low Pulley (Standing),Upper Body,Pull,Rotator Cuff,-,3,Finishing
+60,T-Bar Row,Upper Body,Pull,Back (Lats),"Trapezius, Rhomboids",6,Base
+61,One-Arm Dumbbell Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",6,Base
+62,One-Arm Machine Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Base
+63,Yates Barbell Row (Pronation),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",6,Base
+64,Yates Barbell Row (Supination),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",6,Base
+65,Bent-Over Barbell Row (Pronation),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",6,Base
+66,Bent-Over Barbell Row (Supination),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",6,Base
+67,Partial Deadlift,Full Body,Pull,"Lower Back, Glutes",Hamstrings,8,Base
+68,Seated Machine Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+69,One-Arm Seated Low Pulley Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+70,Seated Low Pulley Row (Pronation),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+71,Seated Low Pulley Row (Supination),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+72,Seated Low Pulley Row (Neutral Grip),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+73,Incline Bench Low Pulley Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+74,One-Arm High Pulley Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+75,High Pulley Row (Neutral Grip),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+76,High Pulley Row (Pronation),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+77,High Pulley Row (Supination),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+78,Machine T-Bar Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+79,One-Arm Low Pulley Row,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+80,Barbell Row on Bench,Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",5,Advanced
+81,Upright Barbell Row (Narrow Grip),Upper Body,Pull,Back (Lats),"Trapezius, Deltoids",6,Advanced
+82,Inverted Row (Bodyweight),Upper Body,Pull,Back (Lats),"Rhomboids, Biceps",7,Finishing
+83,Barbell Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+84,Dumbbell Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+85,Machine Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+86,Calf Machine Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+87,Converging Machine Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+88,Pulley Shrug,Upper Body,Pull,Trapezius,-,4,Finishing
+89,Wide Grip Pull-Up (Front),Upper Body,Pull,Back (Lats),Biceps,8,Base
+90,Wide Grip Pull-Up (Behind Neck),Upper Body,Pull,Back (Lats),Biceps,8,Base
+91,Neutral Grip Pull-Up,Upper Body,Pull,Back (Lats),Biceps,8,Base
+92,Close Grip Pull-Up (Pronation),Upper Body,Pull,Back (Lats),Biceps,8,Base
+93,Close Grip Pull-Up (Supination),Upper Body,Pull,Back (Lats),Biceps,8,Base
+94,Seated Pullover (Machine),Upper Body,Pull,Back (Lats),Triceps,6,Advanced
+95,Converging Pull-Up Machine,Upper Body,Pull,Back (Lats),Biceps,6,Advanced
+96,One-Arm High Pulley Pull,Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+97,High Pulley Pull (Front),Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+98,High Pulley Pull (Behind Neck),Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+99,High Pulley Pull (Neutral Grip),Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+100,High Pulley Pull (Close Grip),Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+101,High Pulley Pull (Supination),Upper Body,Pull,Back (Lats),Biceps,5,Advanced
+102,Standing Pullover (High Pulley),Upper Body,Pull,Back (Lats),Triceps,5,Finishing
+103,Machine Pull-Up,Upper Body,Pull,Back (Lats),Biceps,6,Finishing
+104,Lying Tricep Extension (Cable),Upper Body,Arms,Triceps,Chest,6,Base
+105,Lying Tricep Extension (Barbell or Dumbbell),Upper Body,Arms,Triceps,Chest,6,Base
+106,Close Grip Bench Press,Upper Body,Arms,Triceps,Chest,8,Base
+107,Machine Dips,Upper Body,Arms,Triceps,Chest,7,Base
+108,Bench Dips,Upper Body,Arms,Triceps,Chest,7,Base
+109,Close Grip Dips,Upper Body,Arms,Triceps,Chest,7,Base
+110,"Tricep Extension (High Pulley, Kneeling)",Upper Body,Arms,Triceps,Shoulders,5,Base
+111,Wall Tricep Extension (Bodyweight),Upper Body,Arms,Triceps,Shoulders,4,Base
+112,Skull Crushers (Barbell or Dumbbell),Upper Body,Arms,Triceps,Chest,6,Base
+113,Overhead Tricep Extension (Barbell or Dumbbell),Upper Body,Arms,Triceps,Shoulders,5,Base
+114,Overhead Tricep Extension (Cable),Upper Body,Arms,Triceps,Shoulders,5,Base
+115,One-Arm Overhead Tricep Extension (Dumbbell),Upper Body,Arms,Triceps,Shoulders,5,Base
+116,Magic Tryceps (Barbell or Dumbbell),Upper Body,Arms,Triceps,Chest,6,Base
+117,Pullover Press (Barbell or Dumbbell),Upper Body,Arms,Triceps,Chest,6,Base
+118,Tricep Extension (Machine),Upper Body,Arms,Triceps,Shoulders,5,Advanced
+119,Tricep Extension (180-Degree Arm),Upper Body,Arms,Triceps,Shoulders,5,Advanced
+120,Bent-Over Tricep Extension (High Pulley),Upper Body,Arms,Triceps,Shoulders,5,Advanced
+121,Close Grip Push-Up (On Floor),Upper Body,Arms,Triceps,Chest,6,Advanced
+122,Tate Press (Dumbbells),Upper Body,Arms,Triceps,Chest,6,Advanced
+123,One-Arm Tate Press (Dumbbell),Upper Body,Arms,Triceps,Chest,6,Advanced
+124,Tricep Extension (Cable with Rope),Upper Body,Arms,Triceps,Shoulders,5,Finishing
+125,One-Arm Tricep Extension (Cable),Upper Body,Arms,Triceps,Shoulders,5,Finishing
+126,"Tricep Extension (Cable, Elbows Out)",Upper Body,Arms,Triceps,Shoulders,5,Finishing
+127,"Tricep Extension (Cable, Pronation)",Upper Body,Arms,Triceps,Shoulders,5,Finishing
+128,"Tricep Extension (Cable, Supination)",Upper Body,Arms,Triceps,Shoulders,5,Finishing
+129,Dumbbell Kickback,Upper Body,Arms,Triceps,Shoulders,5,Finishing
+130,Cable Kickback,Upper Body,Arms,Triceps,Shoulders,5,Finishing
+131,Preacher Curl (Barbell),Upper Body,Arms,Biceps,Forearms,6,Base
+132,Incline Dumbbell Curl,Upper Body,Arms,Biceps,Shoulders,6,Base
+133,Cross-Body Hammer Curl,Upper Body,Arms,Biceps,Forearms,6,Base
+134,Supinated Grip Pull-Up (Non-Arched),Upper Body,Arms,Biceps,Back (Lats),8,Base
+135,Lying Cable Curl (Low Pulley),Upper Body,Arms,Biceps,Forearms,6,Advanced
+136,Lying Cable Curl (High Pulley),Upper Body,Arms,Biceps,Forearms,6,Advanced
+137,Spider Curl (Barbell),Upper Body,Arms,Biceps,Shoulders,6,Advanced
+138,Preacher Curl (Cable),Upper Body,Arms,Biceps,Forearms,6,Advanced
+139,Dumbbell Curl,Upper Body,Arms,Biceps,Shoulders,6,Advanced
+140,Barbell Curl,Upper Body,Arms,Biceps,Forearms,6,Advanced
+141,Low Pulley Curl,Upper Body,Arms,Biceps,Forearms,6,Advanced
+142,Hammer Curl (Dumbbells),Upper Body,Arms,Biceps,Forearms,6,Advanced
+143,Machine Preacher Curl,Upper Body,Arms,Biceps,Forearms,5,Finishing
+144,Cable Curl (Vis-�-Vis),Upper Body,Arms,Biceps,Forearms,5,Finishing
+145,Concentration Curl (Dumbbell),Upper Body,Arms,Biceps,Forearms,5,Finishing
+146,Reverse Curl (Low Pulley),Upper Body,Arms,Forearms,Biceps,5,Advanced
+147,Reverse Curl (High Pulley),Upper Body,Arms,Forearms,Biceps,5,Advanced
+148,Reverse Curl (Preacher Bench with Barbell),Upper Body,Arms,Forearms,Biceps,5,Advanced
+149,Reverse Curl (Preacher Bench with Cable),Upper Body,Arms,Forearms,Biceps,5,Advanced
+150,Reverse Curl (Barbell),Upper Body,Arms,Forearms,Biceps,5,Advanced
+151,Reverse Curl (Cable),Upper Body,Arms,Forearms,Biceps,5,Advanced
+152,Andrieux Coil - Extension,Upper Body,Arms,Forearms,None,4,Finishing
+153,Andrieux Coil - Flexion,Upper Body,Arms,Forearms,None,4,Finishing
+154,Wrist Extension (Barbell),Upper Body,Arms,Forearms,None,5,Finishing
+155,Wrist Flexion (Barbell),Upper Body,Arms,Forearms,None,5,Finishing
+156,Abmat Crunch,Core,Core,Rectus Abdominis,Hip Flexors,5,Base
+157,High Pulley Crunch,Core,Core,Rectus Abdominis,None,5,Base
+158,Floor Hip Raise with Abmat,Core,Core,Rectus Abdominis,Hip Flexors,5,Base
+159,Hanging Leg Raise,Core,Core,Rectus Abdominis,Hip Flexors,6,Base
+160,Obliques on Back Extension Bench,Core,Core,Obliques,None,5,Base
+161,Floor Crunch,Core,Core,Rectus Abdominis,None,5,Advanced
+162,Machine Crunch,Core,Core,Rectus Abdominis,None,6,Advanced
+163,Swiss Ball Crunch,Core,Core,Rectus Abdominis,None,6,Advanced
+164,Oblique Crunch (Floor),Core,Core,Obliques,None,5,Advanced
+165,Floor Hip Raise,Core,Core,Rectus Abdominis,Hip Flexors,5,Advanced
+166,Obliques with Abmat,Core,Core,Obliques,None,5,Advanced
+167,Swiss Ball Obliques,Core,Core,Obliques,None,5,Advanced
+168,Hanging Obliques,Core,Core,Obliques,None,6,Advanced
+169,Machine Rotation,Core,Core,Obliques,None,5,Advanced
+170,Vacuum,Core,Core,Transverse Abdominis,None,4,Advanced
+171,Crunch with Rotation (Floor),Core,Core,Rectus Abdominis,Obliques,5,Finishing
+172,Dragon Flag,Core,Core,Rectus Abdominis,Obliques,7,Finishing
+173,Lateral Flexion with Dumbbell,Core,Core,Obliques,None,5,Finishing
+174,Front Plank,Core,Core,Rectus Abdominis,None,4,Finishing
+175,Standing Rotation with Broomstick,Core,Core,Obliques,None,5,Finishing
+176,Barbell Hip Thrust,Lower Body,Core,Gluteus Maximus,Hamstrings,6,Base
+177,Conventional Deadlift,Lower Body,Core,Gluteus Maximus,Hamstrings,7,Base
+178,Sumo Deadlift,Lower Body,Core,Gluteus Maximus,Hamstrings,7,Base
+179,Reverse Hyperextension,Lower Body,Core,Gluteus Maximus,Hamstrings,5,Advanced
+180,Sliding Backward Lunge with Valslide,Lower Body,Core,Gluteus Maximus,Quadriceps,6,Advanced
+181,Smith Machine Lunge,Lower Body,Core,Gluteus Maximus,Quadriceps,6,Advanced
+182,Lying Abductor with Ankle Weights,Lower Body,Core,Gluteus Medius,None,4,Finishing
+183,Seated Abductor Machine,Lower Body,Core,Gluteus Medius,None,4,Finishing
+184,Machine Abductor,Lower Body,Core,Gluteus Medius,None,4,Finishing
+185,Cable Abductor,Lower Body,Core,Gluteus Medius,None,4,Finishing
+186,Machine Hip Extension,Lower Body,Core,Gluteus Maximus,Hamstrings,5,Finishing
+187,Barbell Lunge,Lower Body,Core,Gluteus Maximus,Quadriceps,6,Finishing
+188,Walking Lunge with Barbell or Dumbbells,Lower Body,Core,Gluteus Maximus,Quadriceps,6,Finishing
+189,Reverse Lunge with Barbell or Dumbbells,Lower Body,Core,Gluteus Maximus,Quadriceps,6,Finishing
+190,Hack Squat (Machine),Lower Body,Legs,Quadriceps,Glutes,7,Base
+191,Lying Leg Press,Lower Body,Legs,Quadriceps,Glutes,6,Base
+192,Seated Leg Press,Lower Body,Legs,Quadriceps,Glutes,6,Base
+193,Incline Leg Press,Lower Body,Legs,Quadriceps,Glutes,6,Base
+194,Front Squat with Barbell,Lower Body,Legs,Quadriceps,Glutes,7,Base
+195,Back Squat with Barbell,Lower Body,Legs,Quadriceps,Glutes,7,Base
+196,Sumo Squat with Barbell,Lower Body,Legs,Quadriceps,Glutes,7,Base
+197,Lateral Lunge with Barbell,Lower Body,Legs,Quadriceps,Adductors,6,Advanced
+198,Goblet Squat with Dumbbell,Lower Body,Legs,Quadriceps,Glutes,5,Advanced
+199,Hack Squat with Barbell,Lower Body,Legs,Quadriceps,Glutes,7,Advanced
+200,Step-Up on Bench with Barbell or Dumbbells,Lower Body,Legs,Quadriceps,Glutes,6,Advanced
+201,Weighted Squat with Belt,Lower Body,Legs,Quadriceps,Glutes,7,Advanced
+202,Machine Squat,Lower Body,Legs,Quadriceps,Glutes,6,Advanced
+203,Calf Raise Machine Squat,Lower Body,Legs,Quadriceps,Calves,6,Advanced
+204,Smith Machine Squat,Lower Body,Legs,Quadriceps,Glutes,6,Advanced
+205,Single-Leg Bodyweight Squat,Lower Body,Legs,Quadriceps,Glutes,5,Advanced
+206,Bulgarian Split Squat with Barbell or Dumbbells,Lower Body,Legs,Quadriceps,Glutes,6,Advanced
+207,Seated Adductor Machine,Lower Body,Legs,Adductors,Quadriceps,4,Finishing
+208,Machine Adductor,Lower Body,Legs,Adductors,Quadriceps,4,Finishing
+209,Cable Adductor,Lower Body,Legs,Adductors,Quadriceps,4,Finishing
+210,Single-Leg Hip Flexion on Machine,Lower Body,Legs,Hip Flexors,Quadriceps,5,Finishing
+211,Leg Extension (Lying Machine),Lower Body,Legs,Quadriceps,None,5,Finishing
+212,Leg Extension (Seated Machine),Lower Body,Legs,Quadriceps,None,5,Finishing
+213,Back Raise on Floor or Inclined Bench,Lower Body,Legs,Erector Spinae,Glutes,4,Finishing
+214,Knee Raise Lying on Floor or Inclined Bench,Lower Body,Legs,Hip Flexors,Quadriceps,5,Finishing
+215,Knee Raise on Bench,Lower Body,Legs,Hip Flexors,Quadriceps,5,Finishing
+216,Hanging Knee Raise on Pull-Up Bar,Lower Body,Legs,Hip Flexors,Quadriceps,5,Finishing
+217,Sissy Squat,Lower Body,Legs,Quadriceps,Glutes,6,Finishing
+218,Sissy Squat on Lying Leg Press,Lower Body,Legs,Quadriceps,Glutes,6,Finishing
+219,Dumbbell Squat,Lower Body,Legs,Quadriceps,Glutes,6,Finishing
+220,Indian Squat,Lower Body,Legs,Quadriceps,Glutes,5,Finishing
+221,Glute Ham Raise on Bench,Lower Body,Legs,Hamstrings,Glutes,6,Base
+222,Seated Leg Curl Machine,Lower Body,Legs,Hamstrings,None,5,Base
+223,Stiff-Leg Deadlift with Barbell or Dumbbells,Lower Body,Legs,Hamstrings,Glutes,7,Base
+224,45-Degree Back Extension,Lower Body,Legs,Erector Spinae,Hamstrings,5,Advanced
+225,Good Morning with Barbell,Lower Body,Legs,Hamstrings,Glutes,6,Advanced
+226,Lying Leg Curl Machine,Lower Body,Legs,Hamstrings,None,5,Advanced
+227,Standing Single-Leg Curl Machine,Lower Body,Legs,Hamstrings,None,5,Advanced
+228,Standing Single-Leg Curl with Pulley,Lower Body,Legs,Hamstrings,None,5,Advanced
+229,Stiff-Leg Deadlift with Pulley,Lower Body,Legs,Hamstrings,Glutes,7,Advanced
+230,90-Degree Back Extension,Lower Body,Legs,Erector Spinae,Hamstrings,4,Finishing
+231,Machine Calf Raise,Lower Body,Legs,Gastrocnemius,Soleus,4,Base
+232,Seated Calf Raise (Legs Extended),Lower Body,Legs,Gastrocnemius,Soleus,4,Base
+233,Calf Raise on Leg Press Machine,Lower Body,Legs,Gastrocnemius,Soleus,5,Base
+234,Standing Calf Raise on Machine,Lower Body,Legs,Gastrocnemius,Soleus,5,Advanced
+235,Single-Leg Calf Raise with Dumbbell,Lower Body,Legs,Gastrocnemius,Soleus,5,Advanced
+236,Seated Calf Raise on Machine,Lower Body,Legs,Gastrocnemius,Soleus,4,Finishing
+237,Barbell Deadlift,Lower Body,Legs,Erector Spinae,Hamstrings,7,Base
+238,Sumo Deadlift with Barbell,Lower Body,Legs,Erector Spinae,Glutes,7,Base
+239,Hyperextension on Back Extension Bench,Lower Body,Legs,Erector Spinae,Glutes,4,Advanced
+240,Bodyweight Good Morning,Lower Body,Legs,Erector Spinae,Hamstrings,5,Base
+241,Plank,Core,Bodyweight,Rectus Abdominis,Erector Spinae,4,Base
+242,Superman,Lower Body,Bodyweight,Erector Spinae,Glutes,5,Base
+243,Bird Dog,Core,Bodyweight,Erector Spinae,Glutes,4,Base
+244,Reverse Hyperextension (Bodyweight),Lower Body,Bodyweight,Erector Spinae,Hamstrings,4,Base
+245,Hollow Body Hold,Core,Bodyweight,Rectus Abdominis,Erector Spinae,5,Advanced
+246,Glute Bridge (Bodyweight),Lower Body,Bodyweight,Glutes,Erector Spinae,4,Base
+247,Inverted Rows (Bodyweight),Upper Body,Bodyweight,Lats,Erector Spinae,6,Advanced
+248,Bridge March (Bodyweight),Lower Body,Bodyweight,Glutes,Erector Spinae,5,Base
+249,Push-Up,Chest,Bodyweight,Pectorals,Triceps,7,Base
+250,Wide Grip Push-Up,Chest,Bodyweight,Pectorals,Shoulders,7,Base
+251,Decline Push-Up,Chest,Bodyweight,Pectorals,Shoulders,8,Advanced
+252,Diamond Push-Up,Chest,Bodyweight,Pectorals,Triceps,7,Advanced
+253,Archer Push-Up,Chest,Bodyweight,Pectorals,Triceps,9,Advanced
+254,Pike Push-Up,Shoulders,Bodyweight,Deltoids,Triceps,6,Advanced
+255,Handstand Push-Up,Shoulders,Bodyweight,Deltoids,Triceps,10,Advanced
+256,Wall Walks,Shoulders,Bodyweight,Deltoids,Triceps,7,Advanced
+257,Shoulder Taps,Shoulders,Bodyweight,Deltoids,Core,5,Base
+258,Plank to Downward Dog,Shoulders,Bodyweight,Deltoids,Triceps,5,Base
+259,Bodyweight Squats,Legs,Bodyweight,Quadriceps,Glutes,6,Base
+260,Lunges,Legs,Bodyweight,Quadriceps,Glutes,7,Base
+261,Step-Ups,Legs,Bodyweight,Quadriceps,Glutes,6,Base
+262,Bulgarian Split Squats,Legs,Bodyweight,Quadriceps,Glutes,8,Advanced
+263,Single-Leg Squats,Legs,Bodyweight,Quadriceps,Glutes,8,Advanced
+264,Dips (Bench or Chair),Arms,Bodyweight,Triceps,Chest,8,Base
+265,Diamond Push-Ups,Arms,Bodyweight,Triceps,Chest,7,Advanced
+266,Close-Grip Push-Ups,Arms,Bodyweight,Triceps,Chest,7,Advanced
+267,Bodyweight Skull Crushers,Arms,Bodyweight,Triceps,Chest,6,Advanced
+268,Tricep Dips (between chairs),Arms,Bodyweight,Triceps,Chest,8,Advanced
+269,Side Plank,Core,Bodyweight,Obliques,Erector Spinae,4,Base
+270,Leg Raises,Core,Bodyweight,Rectus Abdominis,Hip Flexors,5,Base
+271,Bicycle Crunches,Core,Bodyweight,Rectus Abdominis,Obliques,6,Advanced
+272,Flutter Kicks,Core,Bodyweight,Rectus Abdominis,Hip Flexors,5,Advanced
+273,Burpees,Full Body,Bodyweight,Full Body,Core,10,Base
+274,Mountain Climbers,Full Body,Bodyweight,Full Body,Core,8,Base
+275,Jump Squats,Full Body,Bodyweight,Legs,Core,8,Advanced
+276,Tuck Jumps,Full Body,Bodyweight,Legs,Core,9,Advanced
+277,Bear Crawls,Full Body,Bodyweight,Full Body,Core,6,Base
