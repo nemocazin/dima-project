@@ -29,9 +29,9 @@ class CreateWorkoutPage extends StatefulWidget {
 
 class _CreateWorkoutPage extends State<CreateWorkoutPage> {
   static List<List<dynamic>> selectedExercises = [];
-  static int totalTime = 0;
+  static int totalTimeSec = 0; 
+  static int totalTimeMin = 0; 
   static int totalCalories = 0;
-  static int keyIndex = 0;
 
   @override
   void initState() {
@@ -42,9 +42,11 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         widget.exerciseData?.add(widget.series);
         widget.exerciseData?.add(widget.repetitions);
         widget.exerciseData?.add(widget.restTime);
+        totalTimeSec = (((averageTimeRepet * widget.repetitions!) * widget.series!)).toInt();
+        widget.exerciseData?.add(totalTimeSec);
         // Adding exercise to the selected list and making calculations
         selectedExercises.add(widget.exerciseData!); 
-        totalTime = (((averageTimeRepet * widget.repetitions!) * widget.series!) ~/ 60).toInt();
+        totalTimeMin = ((totalTimeSec) ~/ 60).toInt();
         totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series!;
       });
     }
@@ -83,7 +85,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Total time: $totalTime min',
+                      'Total time: $totalTimeMin min',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -153,18 +155,11 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
            */
           else
             Expanded(
-              child: ReorderableListView(
-                onReorder: (oldIndex, newIndex) {
-                  setState(() {
-                    if (newIndex > oldIndex) newIndex--;
-                    final item = selectedExercises.removeAt(oldIndex);
-                    selectedExercises.insert(newIndex, item);
-                  });
-                },
-                children: List.generate(selectedExercises.length, (index) {
+              child: ListView.builder(
+                itemCount: selectedExercises.length,
+                itemBuilder: (context, index) {
                   final exercise = selectedExercises[index];
                   return Card(
-                    key: ValueKey(keyIndex++), 
                     color: const Color(0xFF242b35),
                     margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                     child: ListTile(
@@ -175,13 +170,21 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                           fontSize: 16,
                         ),
                       ),
-                      trailing: const Icon(
-                        Icons.drag_handle,
-                        color: Colors.white54,
+                      // Red cross
+                      trailing: IconButton(
+                        icon: const Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedExercises.removeAt(index);
+                          });
+                        },
                       ),
                     ),
                   );
-                }),
+                },
               ),
             ),
 
@@ -248,7 +251,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
           ),
           onChanged: (value) {
             setState(() {
-              totalTime = int.tryParse(value) ?? totalTime;
+              totalTimeMin = int.tryParse(value) ?? totalTimeMin;
             });
           },
         ),
@@ -329,6 +332,13 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                 if (workoutName.isNotEmpty) {
                   _saveProgram(workoutName, selectedExercises);
                   Navigator.pop(context);
+                  _resetVariables();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MenuPage(),
+                    ),
+                  );
                 } 
                 /**
                  * Text Input empty so error message
@@ -412,6 +422,33 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
       // Save with the new programm
       await file.writeAsString(prettyJson);
       print('The workout program has been correctly saved.');
+      showDialog(
+        context: context, // Assurez-vous que cette fonction est appelée dans un widget ayant un `context`
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: const Color(0xFF242b35),
+            title: Text(
+              'Succès',
+              style: TextStyle(color: Colors.white)
+            ),
+            content: Text(
+              'The workout program has been saved correctly.',
+              style: TextStyle(color: Colors.white), 
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Fermer l'AlertDialog
+                },
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.blue)
+                ),
+              ),
+            ],
+          );
+        },
+      );
     } catch (e) {
       print('Error happened during saving : $e');
     }
@@ -423,10 +460,8 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
    */
   void _resetVariables() {
     _CreateWorkoutPage.selectedExercises = [];
-    _CreateWorkoutPage.totalTime = 0;
+    _CreateWorkoutPage.totalTimeSec = 0;
+    _CreateWorkoutPage.totalTimeMin = 0;
     _CreateWorkoutPage.totalCalories = 0;
-    _CreateWorkoutPage.keyIndex = 0;
   }
-
 }
-
