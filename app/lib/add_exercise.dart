@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
 import 'dart:io';
 
+import 'exercise_settings.dart';
+
 class AddExercisePage extends StatefulWidget {
   @override
   _AddExercisePageState createState() => _AddExercisePageState();
@@ -16,10 +18,13 @@ class _AddExercisePageState extends State<AddExercisePage> {
   @override
   void initState() {
     super.initState();
-    loadExercises();
+    loadExercisesNames();
   }
 
-  Future<void> loadExercises() async {
+  /**
+   * @brief Load all of the exercises names to show it on the app
+   */
+  Future<void> loadExercisesNames() async {
     try {
       final file = File('assets/exercises.csv');
       final csvData = await file.readAsString();
@@ -28,14 +33,17 @@ class _AddExercisePageState extends State<AddExercisePage> {
         for (int i = 1; i < exercises.length; i++) {
           exercisesNames.add(exercises[i][1].toString());
         }
-        filteredExercisesNames = List.from(exercisesNames); // Initialiser la liste filtrée
+        filteredExercisesNames = List.from(exercisesNames);
       });
     } catch (e) {
-      print('Error loading exercises: $e');
+      print('Error loading exercises: $e'); //TODO : maybe remove or replace
     }
   }
 
-  void filterExercises(String query) {
+  /**
+   * @brief Filter the exercises container with the string written
+   */
+  void filterExercisesFromString(String query) {
     setState(() {
       filteredExercisesNames = exercisesNames.where((name) {
         return name.toLowerCase().startsWith(query.toLowerCase());
@@ -45,7 +53,6 @@ class _AddExercisePageState extends State<AddExercisePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Récupérer la hauteur de l'écran
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -66,23 +73,23 @@ class _AddExercisePageState extends State<AddExercisePage> {
               controller: searchController,
               decoration: InputDecoration(
                 labelText: 'Search exercise',
-                labelStyle: TextStyle(color: Colors.white), // Change la couleur du label
-                prefixIcon: Icon(Icons.search, color: Colors.white), // Change la couleur de l'icône
+                labelStyle: TextStyle(color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white), 
                 border: OutlineInputBorder(),
               ),
-              style: TextStyle(color: Colors.white), // Change la couleur du texte du champ de recherche
-              onChanged: filterExercises, // Appelle la méthode pour filtrer
+              style: TextStyle(color: Colors.white), 
+              onChanged: filterExercisesFromString, 
             ),
           ),
 
-          // Container avec un écart et des coins arrondis
+          // Container with exercises
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Ajoute un écart horizontal
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
-              height: screenHeight / 2, // Fixe la hauteur à la moitié de l'écran
+              height: screenHeight / 2, 
               decoration: BoxDecoration(
-                color: const Color(0xFF242b35), // Couleur de fond pour la liste
-                borderRadius: BorderRadius.circular(20.0), // Coins arrondis
+                color: const Color(0xFF242b35), 
+                borderRadius: BorderRadius.circular(20.0), 
               ),
               child: ListView.builder(
                 itemCount: filteredExercisesNames.length,
@@ -91,14 +98,15 @@ class _AddExercisePageState extends State<AddExercisePage> {
                     title: Text(
                       filteredExercisesNames[index],
                       style: TextStyle(
-                        color: Colors.white,  // Couleur du texte (blanc)
+                        color: Colors.white, 
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(
-                        context, 
-                        'exerciseSettingsPage',
-                        arguments: filteredExercisesNames[index],
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ExerciseSettingPage(filteredExerciseName: filteredExercisesNames[index]),
+                        ),
                       );
                     },
                   );

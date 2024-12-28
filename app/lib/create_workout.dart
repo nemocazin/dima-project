@@ -16,7 +16,7 @@ final List<Map<String, dynamic>> exercises = [];
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1c1e22), // Couleur de l'AppBar  
+        backgroundColor: const Color(0xFF1c1e22), 
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           color: Colors.blue.shade100,
@@ -97,7 +97,7 @@ final List<Map<String, dynamic>> exercises = [];
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF242b35), 
-                      alignment: Alignment.center, // Centre le texte
+                      alignment: Alignment.center, 
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -113,7 +113,7 @@ final List<Map<String, dynamic>> exercises = [];
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF242b35), 
-                      alignment: Alignment.center, // Centre le texte
+                      alignment: Alignment.center, 
                     ),
                     onPressed: () => _saveWorkout(),
                     child: const Text('Save'),

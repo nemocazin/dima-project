@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Nécessaire pour formater les dates
+import 'package:intl/intl.dart'; 
 
 import 'create_workout.dart';
 
@@ -8,10 +8,10 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Obtenir la date actuelle
+    // Get actual date
     DateTime now = DateTime.now();
-    String dayName = DateFormat('EEEE').format(now); // Nom du jour (ex : Monday)
-    String dayNumber = DateFormat('d').format(now);  // Numéro du jour (ex : 14)
+    String dayName = DateFormat('EEEE').format(now); // Day name
+    String dayNumber = DateFormat('d').format(now);  // Day number
 
     return Scaffold(
       appBar: AppBar(
@@ -28,8 +28,8 @@ class MenuPage extends StatelessWidget {
         ),
 
         title: const Text("Menu Page"),
-        centerTitle: true, // Centre le texte de l'AppBar
-        backgroundColor: const Color(0xFF1c1e22), // Couleur de l'AppBar   
+        centerTitle: true, 
+        backgroundColor: const Color(0xFF1c1e22), 
 
         // Badges button   
         actions: [
@@ -42,11 +42,10 @@ class MenuPage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: const Color(0xFF1c1e22), // Couleur de l'arrière-plan
+      backgroundColor: const Color(0xFF1c1e22), 
 
       body: Column(
         children: [
-          // Texte du jour dans un cercle
           GestureDetector(
             onTap: () {
               // Naviguer vers recapPage
@@ -55,25 +54,27 @@ class MenuPage extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20),
               alignment: Alignment.center,
               child: CircleAvatar(
-                radius: 80, // Taille du cercle
-                backgroundColor: Colors.blue.shade100, // Couleur de fond
+                radius: 80, 
+                backgroundColor: Colors.blue.shade100, 
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Actual day text
                     Text(
-                      dayName, // Jour actuel (ex : Monday)
+                      dayName, 
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF2e4b5a), // Couleur du texte
+                        color: Color(0xFF2e4b5a), 
                       ),
                     ),
+                    // Actual day number text
                     Text(
-                      dayNumber, // Numéro actuel (ex : 14)
+                      dayNumber, 
                       style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF2e4b5a), // Couleur du texte
+                        color: Color(0xFF2e4b5a), 
                       ),
                     ),
                   ],
@@ -81,8 +82,9 @@ class MenuPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20), // Espacement
-          // Informations sur le Workout
+          const SizedBox(height: 20), 
+
+          // Workout of the day text
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
@@ -92,7 +94,7 @@ class MenuPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFE1E0E0), // Couleur du texte
+                    color: Color(0xFFE1E0E0), 
                   ),
                 ),
                 SizedBox(height: 8),
@@ -100,14 +102,14 @@ class MenuPage extends StatelessWidget {
                   "Start time: 17:00",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFFE1E0E0), // Couleur du texte
+                    color: Color(0xFFE1E0E0),
                   ),
                 ),
                 Text(
                   "End time: 19:00",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFFE1E0E0), // Couleur du texte
+                    color: Color(0xFFE1E0E0), 
                   ),
                 ),
               ],
@@ -115,25 +117,27 @@ class MenuPage extends StatelessWidget {
           ),
 
           const Spacer(),
-          // Boutons Modifier et Démarrer Workout
+          // Bottom Buttons
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                // Button for modifying the workout of the day
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF242b35), 
-                      alignment: Alignment.center, // Centre le texte
+                      alignment: Alignment.center, 
                     ),
                     onPressed: () {
-                      // Logique pour modifier l'horaire
+                      // Change workout
                     },
                     child: const Text("Modify Schedule"),
                   ),
                 ),
                 const SizedBox(width: 16), 
+                // Start workout Button
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
