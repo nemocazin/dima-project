@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ExerciseSettingPage extends StatefulWidget {
-  final String filteredExerciseName;
+import 'create_workout.dart';
 
-  const ExerciseSettingPage({Key? key, required this.filteredExerciseName})
+const int exerciseNAME = 1;
+
+class ExerciseSettingPage extends StatefulWidget {
+  
+  final List<dynamic> exerciseSelected;
+
+  const ExerciseSettingPage({Key? key, required this.exerciseSelected})
       : super(key: key);
 
   @override
@@ -30,8 +35,23 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
       return;
     }
 
-    // Si tous les champs sont remplis
-    //_showSuccessDialog();
+    // Convertir les entrées en int
+    int series = int.tryParse(_seriesController.text) ?? 0;
+    int repetitions = int.tryParse(_repetitionsController.text) ?? 0;
+    int restTime = int.tryParse(_restTimeController.text) ?? 0;
+
+    // Rediriger vers CreateWorkoutPage avec les arguments
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CreateWorkoutPage(
+          exerciseData: widget.exerciseSelected,
+          series: series,
+          repetitions: repetitions,
+          restTime: restTime,
+        ),
+      ),
+    );
   }
 
   void _showErrorDialog(String message) {
@@ -68,7 +88,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF1c1e22),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.blue.shade100,
           onPressed: () => Navigator.pop(context),
         ),
@@ -82,7 +102,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
             // Exercice Name
             Center(
               child: Text(
-                widget.filteredExerciseName,
+                widget.exerciseSelected[exerciseNAME],
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -174,7 +194,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
                   'Save Exercise',
                   style: TextStyle(
                     fontSize: 16, 
-                    backgroundColor: const Color(0xFF242b35), 
+                    backgroundColor: Color(0xFF242b35), 
                   ),
                 ),
               ),

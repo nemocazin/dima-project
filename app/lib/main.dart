@@ -22,7 +22,14 @@ class MenuPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CreateWorkoutPage()),
+              MaterialPageRoute(
+                builder: (context) => CreateWorkoutPage(
+                  exerciseData: null,   // Envoie null pour exerciseData
+                  series: 0,         // Envoie null pour series
+                  repetitions: 0,    // Envoie null pour repetitions
+                  restTime: 0,       // Envoie null pour restTime
+                ),
+              ),
             );
           },
         ),

@@ -105,7 +105,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ExerciseSettingPage(filteredExerciseName: filteredExercisesNames[index]),
+                          builder: (context) => ExerciseSettingPage(exerciseSelected: exercises[index+1]),
                         ),
                       );
                     },
