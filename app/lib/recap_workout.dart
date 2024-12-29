@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
+import 'timer.dart';
 
 // Constantes pour les indices
 const int seriesIndex = 8;
@@ -121,7 +122,12 @@ class RecapWorkout extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (startWorkout) {
-                          Navigator.pushNamed(context, '/timer');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TimerPage(workoutName: workoutName),
+                            ),
+                          );
                         } else {
                           Navigator.push(
                             context,
@@ -132,7 +138,7 @@ class RecapWorkout extends StatelessWidget {
                         }
                       },
                       child: Text(
-                        startWorkout ? 'Start Timer' : 'Return to Home Page',
+                        startWorkout ? 'Go to Timer' : 'Return to Home Page',
                       ),
                     ),
                   ),

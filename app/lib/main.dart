@@ -29,17 +29,23 @@ class _MenuPageState extends State<MenuPage> {
 
   // Fonction pour charger les données JSON
   Future<void> _loadWorkoutData() async {
-    // Charger schedule.json et program.json
-    var scheduleData = await _loadJson('data/schedule.json');
-    var programData = await _loadJson('data/program.json');
+  // Charger schedule.json et program.json
+  var scheduleData = await _loadJson('data/schedule.json');
+  var programData = await _loadJson('data/program.json');
 
-    DateTime now = DateTime.now();
-    String dayName = DateFormat('EEEE').format(now); // Jour actuel
+  DateTime now = DateTime.now();
+  String dayName = DateFormat('EEEE').format(now); // Jour actuel
 
+  // Vérifier si scheduleData est vide ou si le jour actuel n'est pas dans scheduleData
+  if (scheduleData.isEmpty || !scheduleData.containsKey(dayName)) {
+    workoutName = 'Undefined';
+    startTime = '';  // Définir startTime comme chaîne vide
+    endTime = '';    // Définir endTime comme chaîne vide
+  } else {
     // Récupérer le programme du jour actuel
     workoutName = scheduleData[dayName] ?? 'Undefined';
 
-    // Calculer la durée totale du workout
+    // Calculer la durée totale du workoutR
     int totalDurationInSeconds = _calculateTotalDuration(workoutName, programData);
 
     // Calculer l'heure de fin
@@ -47,18 +53,30 @@ class _MenuPageState extends State<MenuPage> {
 
     startTime = DateFormat('HH:mm').format(now);
     endTime = DateFormat('HH:mm').format(endDateTime);
-
-    // Rafraîchir l'interface utilisateur
-    setState(() {});
   }
+
+  // Rafraîchir l'interface utilisateur
+  setState(() {});
+}
 
   // Charger un fichier JSON (avec un type dynamique)
   Future<dynamic> _loadJson(String path) async {
-    // We use this technic because with JSON function, the file is stored in cache and can't be reload
+  try {
     File file = File(path);
     String contents = await file.readAsString();
+
+    // Vérifier si le contenu est vide
+    if (contents.isEmpty) {
+      throw FormatException('Le fichier est vide');
+    }
+
+    // Retourner le contenu décodé
     return json.decode(contents); 
+  } catch (e) {
+    print('Erreur lors du chargement du fichier JSON : $e');
+    return {};  // Retourne un objet vide en cas d'erreur
   }
+}
 
   // Sauvegarder un fichier JSON
   Future<void> _saveJson(String path, Map<String, dynamic> data) async {

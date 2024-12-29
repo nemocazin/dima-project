@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'recap_workout.dart';
 import 'main.dart';
 
+import 'manage_workout.dart';
+
 class WorkoutSchedulePage extends StatefulWidget {
   @override
   _WorkoutSchedulePageState createState() => _WorkoutSchedulePageState();
@@ -147,39 +149,66 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
         ],
       ),
       backgroundColor: const Color(0xFF1c1e22),
-      body: ListView.builder(
-        itemCount: daysOfWeek.length,
-        itemBuilder: (context, index) {
-          String day = daysOfWeek[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF242b35),
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: ListTile(
-                title: Text(
-                  day,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: daysOfWeek.length,
+              itemBuilder: (context, index) {
+                String day = daysOfWeek[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF242b35),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        day,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      trailing: Text(
+                        schedule[day] ?? "Undefined",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onTap: () => _selectWorkoutProgram(day),
+                    ),
                   ),
-                ),
-                trailing: Text(
-                  schedule[day] ?? "Undefined",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.white,
-                  ),
-                ),
-                onTap: () => _selectWorkoutProgram(day),
-              ),
+                );
+              },
             ),
-          );
-        },
+          ),
+          // Le bouton en bas
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF242b35),
+                alignment: Alignment.center, 
+              ),
+              onPressed: () {
+                // Naviguer vers ManageWorkout lorsqu'on appuie sur le bouton
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ManageWorkout(),
+                  ),
+                );
+              },
+              child: const Text("Manage Workouts"),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+

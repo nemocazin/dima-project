@@ -42,7 +42,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         widget.exerciseData?.add(widget.series);
         widget.exerciseData?.add(widget.repetitions);
         widget.exerciseData?.add(widget.restTime);
-        totalTimeSec = (((averageTimeRepet * widget.repetitions!) * widget.series!)).toInt();
+        totalTimeSec = (((averageTimeRepet * widget.repetitions!) * widget.series!) + widget.series! * widget.restTime!).toInt();
         widget.exerciseData?.add(totalTimeSec);
         // Adding exercise to the selected list and making calculations
         selectedExercises.add(widget.exerciseData!); 
