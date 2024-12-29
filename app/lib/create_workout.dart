@@ -103,12 +103,6 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                     ),
                   ],
                 ),
-                // Config button
-                IconButton(
-                  icon: const Icon(Icons.settings),
-                  color: Colors.blue.shade100,
-                  onPressed: () => _showTimerDialog(),
-                ),
               ],
             ),
           ),
@@ -221,46 +215,6 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                   ),
                 ),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /**
-   * @brief Show the timer settings 
-   */
-  void _showTimerDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF242b35),
-        title: const Text(
-          'Timer Configuration',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: TextField(
-          style: TextStyle(color: Colors.white),
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            labelText: 'Time (minutes)',
-            labelStyle: TextStyle(
-              color: Colors.blue, 
-            ),
-          ),
-          onChanged: (value) {
-            setState(() {
-              totalTimeMin = int.tryParse(value) ?? totalTimeMin;
-            });
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text(
-              'OK',
-              style: TextStyle(color: Colors.blue)
             ),
           ),
         ],
@@ -423,12 +377,12 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
       await file.writeAsString(prettyJson);
       print('The workout program has been correctly saved.');
       showDialog(
-        context: context, // Assurez-vous que cette fonction est appelée dans un widget ayant un `context`
+        context: context, 
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: const Color(0xFF242b35),
             title: Text(
-              'Succès',
+              'Success',
               style: TextStyle(color: Colors.white)
             ),
             content: Text(
@@ -438,7 +392,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // Fermer l'AlertDialog
+                  Navigator.of(context).pop(); 
                 },
                 child: Text(
                   'OK',
