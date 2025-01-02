@@ -17,7 +17,7 @@ class _ManageWorkoutState extends State<ManageWorkout> {
     _loadWorkouts();
   }
 
-  // Charger les données depuis le fichier JSON
+  // Loading data from the JSON file
   Future<void> _loadWorkouts() async {
     final file = File('data/program.json');
     if (await file.exists()) {
@@ -28,7 +28,7 @@ class _ManageWorkoutState extends State<ManageWorkout> {
     }
   }
 
-  // Supprimer un workout et mettre à jour le fichier JSON avec une indentation correcte
+  // Delete a workout and update the JSON file with the correct indentation
   Future<void> _deleteWorkout(int index) async {
     setState(() {
       workouts.removeAt(index);
@@ -36,14 +36,11 @@ class _ManageWorkoutState extends State<ManageWorkout> {
 
     final file = File('data/program.json');
     String jsonString = json.encode(workouts, toEncodable: (dynamic nonEncodable) => nonEncodable.toString());
-    
-    // Indentation avec 2 espaces pour une meilleure lisibilité
+  
     String formattedJson = const JsonEncoder.withIndent('  ').convert(json.decode(jsonString));
 
     await file.writeAsString(formattedJson);
   }
-
-  // ... reste du code inchangé ...
 
 @override
 Widget build(BuildContext context) {
@@ -53,14 +50,14 @@ Widget build(BuildContext context) {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         color: Colors.blue.shade100,
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => Navigator.pop(context)
       ),
     ),
     backgroundColor: const Color(0xFF1c1e22),
     body: Padding(
       padding: const EdgeInsets.all(16.0),
       child: workouts.isEmpty 
-      ? Center( // Si la liste est vide, affiche le message centré
+      ? Center( // If the list is empty, no workouts
           child: Text(
             'No more workouts program',
             style: TextStyle(
@@ -70,19 +67,19 @@ Widget build(BuildContext context) {
             ),
           ),
         )
-      : ListView.builder(
+      : ListView.builder( // List of all the workouts
         itemCount: workouts.length,
         itemBuilder: (context, index) {
           final workout = workouts[index];
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0), // Réduit l'espace entre les éléments
+            padding: const EdgeInsets.only(bottom: 8.0), 
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Réduit le padding vertical
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
               decoration: BoxDecoration(
                 color: const Color(0xFF242b35),
-                borderRadius: BorderRadius.circular(8), // Réduit légèrement les bords arrondis
+                borderRadius: BorderRadius.circular(8), 
               ),
-              child: Row( // Remplace ListTile par Row pour plus de contrôle
+              child: Row( 
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -92,9 +89,10 @@ Widget build(BuildContext context) {
                       fontSize: 16,
                     ),
                   ),
+                  // Red cross for deleting workouts
                   IconButton(
-                    padding: EdgeInsets.zero, // Enlève le padding du bouton
-                    constraints: BoxConstraints(), // Enlève les contraintes de taille minimale
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(), 
                     icon: Icon(Icons.close, color: Colors.red, size: 20),
                     onPressed: () => _deleteWorkout(index),
                   ),

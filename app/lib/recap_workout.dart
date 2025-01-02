@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'timer.dart';
 
-// Constantes pour les indices
 const int seriesIndex = 8;
 const int repetitionsIndex = 9;
 const int restTimeIndex = 10;
@@ -16,7 +15,9 @@ class RecapWorkout extends StatelessWidget {
 
   const RecapWorkout({Key? key, required this.startWorkout, required this.workoutName}) : super(key: key);
 
-  // Fonction pour récupérer les données des exercices
+  /**
+   * @brief Function for retrieving exercise data
+   */
   Future<List<List<dynamic>>> _fetchWorkout(String workoutName) async {
     try {
       final file = File('data/program.json');
@@ -26,7 +27,6 @@ class RecapWorkout extends StatelessWidget {
 
         for (var program in programs) {
           if (program['workoutName'] == workoutName) {
-            // Retourne la liste des exercices (liste de listes)
             return List<List<dynamic>>.from(program['exercises']);
           }
         }

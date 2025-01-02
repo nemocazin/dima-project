@@ -24,6 +24,9 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     _loadSchedule();
   }
 
+  /**
+   * @brief Load the JSON file and save in a variables all the workout saved
+   */
   Future<void> _loadWorkoutPrograms() async {
     try {
       final file = File('data/program.json');
@@ -40,6 +43,9 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     }
   }
 
+  /**
+   * @brief Load all the workout associated with the days
+   */
   Future<void> _loadSchedule() async {
     try {
       final file = File('data/schedule.json');
@@ -54,6 +60,9 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     }
   }
 
+  /**
+   * @brief Save the new schedule
+   */
   Future<void> _saveSchedule() async {
     try {
       final file = File('data/schedule.json');
@@ -68,6 +77,10 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     }
   }
 
+  /**
+   * @brief Rest all days with the "Undefined" workout
+   *        Used by the "reset all" button
+   */
   void _resetSchedule() {
     setState(() {
       schedule = {for (var day in daysOfWeek) day: "Undefined"};
@@ -75,6 +88,9 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     _saveSchedule();
   }
 
+  /**
+   * @brief Dialog to show all the workouts when selecting one
+   */
   void _selectWorkoutProgram(String day) async {
     if (workoutPrograms.isEmpty) return;
 
@@ -105,7 +121,6 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
         );
       },
     );
-
     if (selectedProgram != null) {
       setState(() {
         schedule[day] = selectedProgram;
@@ -152,6 +167,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
       body: Column(
         children: [
           Expanded(
+            // List of each days
             child: ListView.builder(
               itemCount: daysOfWeek.length,
               itemBuilder: (context, index) {
@@ -186,7 +202,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
               },
             ),
           ),
-          // Le bouton en bas
+          // Bottom buttons
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
@@ -195,7 +211,6 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
                 alignment: Alignment.center, 
               ),
               onPressed: () {
-                // Naviguer vers ManageWorkout lorsqu'on appuie sur le bouton
                 Navigator.push(
                   context,
                   MaterialPageRoute(

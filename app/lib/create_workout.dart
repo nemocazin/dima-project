@@ -38,7 +38,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
     super.initState();
     if (widget.exerciseData != null) {
       setState(() {
-        // add the settings to the exercise before being transferred to the list of selected exercise
+        // Add the settings to the exercise before being transferred to the list of selected exercise
         widget.exerciseData?.add(widget.series);
         widget.exerciseData?.add(widget.repetitions);
         widget.exerciseData?.add(widget.restTime);

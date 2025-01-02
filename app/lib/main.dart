@@ -1,8 +1,7 @@
-import 'dart:convert'; // Pour convertir JSON en Map et vice-versa
-import 'dart:io'; // Pour lire et écrire des fichiers
+import 'dart:convert'; 
+import 'dart:io'; 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Pour formater les dates
-import 'package:flutter/services.dart'; // Pour charger les fichiers JSON
+import 'package:intl/intl.dart'; 
 
 import 'create_workout.dart';
 import 'schedule.dart';
@@ -23,68 +22,71 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    // Charger les données au démarrage
     _loadWorkoutData();
   }
 
-  // Fonction pour charger les données JSON
+  /**
+   * @brief Get the information of the current workout for the day
+   *        If no workout associated with the current date, declare undefined
+   */
   Future<void> _loadWorkoutData() async {
-  // Charger schedule.json et program.json
   var scheduleData = await _loadJson('data/schedule.json');
   var programData = await _loadJson('data/program.json');
 
   DateTime now = DateTime.now();
-  String dayName = DateFormat('EEEE').format(now); // Jour actuel
+  String dayName = DateFormat('EEEE').format(now);
 
-  // Vérifier si scheduleData est vide ou si le jour actuel n'est pas dans scheduleData
+  // Check if scheduleData is empty or if the current day is not in scheduleData
   if (scheduleData.isEmpty || !scheduleData.containsKey(dayName)) {
     workoutName = 'Undefined';
-    startTime = '';  // Définir startTime comme chaîne vide
-    endTime = '';    // Définir endTime comme chaîne vide
-  } else {
-    // Récupérer le programme du jour actuel
+    startTime = ''; 
+    endTime = '';    
+  } 
+  else {
+    // Retrieve the current day's programme
     workoutName = scheduleData[dayName] ?? 'Undefined';
 
-    // Calculer la durée totale du workoutR
     int totalDurationInSeconds = _calculateTotalDuration(workoutName, programData);
 
-    // Calculer l'heure de fin
     DateTime endDateTime = now.add(Duration(seconds: totalDurationInSeconds));
 
     startTime = DateFormat('HH:mm').format(now);
     endTime = DateFormat('HH:mm').format(endDateTime);
   }
 
-  // Rafraîchir l'interface utilisateur
+  // Refresh UI
   setState(() {});
 }
 
-  // Charger un fichier JSON (avec un type dynamique)
+  /**
+   * @brief Load a JSON file
+   */
   Future<dynamic> _loadJson(String path) async {
   try {
     File file = File(path);
     String contents = await file.readAsString();
 
-    // Vérifier si le contenu est vide
+    // Check if the content is empty
     if (contents.isEmpty) {
-      throw FormatException('Le fichier est vide');
+      throw FormatException('JSON File empty');
     }
 
-    // Retourner le contenu décodé
     return json.decode(contents); 
   } catch (e) {
-    print('Erreur lors du chargement du fichier JSON : $e');
-    return {};  // Retourne un objet vide en cas d'erreur
+    print('Error loading JSON file : $e');
+    return {};
   }
 }
 
-  // Sauvegarder un fichier JSON
+  /**
+   * @brief Saving a JSON file
+   */
   Future<void> _saveJson(String path, Map<String, dynamic> data) async {
     final file = File(path);
     await file.writeAsString(jsonEncode(data));
   }
 
-  // Calculer la durée totale d'un workout en fonction de son nom
+  // Calculate the total duration of a workout based on its name
   int _calculateTotalDuration(String workoutName, List<dynamic> programData) {
     int totalDuration = 0;
     for (var program in programData) {
@@ -97,15 +99,18 @@ class _MenuPageState extends State<MenuPage> {
     return totalDuration;
   }
 
-  // Modifier le programme pour un jour donné
+  /**
+   * @brief Modify the programme for a given day
+   *        Since when loading the JSON file is not updated because of the cache,
+   *        we need to updated by hand the file 
+   */
   Future<void> _updateSchedule(String day, String newWorkout) async {
     var scheduleData = await _loadJson('data/schedule.json');
     scheduleData[day] = newWorkout;
 
-    // Sauvegarder les modifications
     await _saveJson('data/schedule.json', scheduleData);
 
-    // Recharger les données et rafraîchir l'interface
+    // Refresh UI
     await _loadWorkoutData();
   }
 
@@ -122,10 +127,10 @@ class _MenuPageState extends State<MenuPage> {
               context,
               MaterialPageRoute(
                 builder: (context) => CreateWorkoutPage(
-                  exerciseData: null,   // Envoie null pour exerciseData
-                  series: 0,         // Envoie null pour series
-                  repetitions: 0,    // Envoie null pour repetitions
-                  restTime: 0,       // Envoie null pour restTime
+                  exerciseData: null,  
+                  series: 0,        
+                  repetitions: 0,  
+                  restTime: 0,       
                 ),
               ),
             );
@@ -142,7 +147,7 @@ class _MenuPageState extends State<MenuPage> {
             icon: const Icon(Icons.emoji_events),
             color: Colors.blue.shade100,
             onPressed: () {
-              // Naviguer vers badgesPage
+              // Navigate to badgesPage
             },
           ),
         ],
@@ -153,7 +158,7 @@ class _MenuPageState extends State<MenuPage> {
         children: [
           GestureDetector(
             onTap: () {
-              // Naviguer vers recapPage
+              // Navigate to recapPage
             },
             child: Container(
               margin: const EdgeInsets.only(top: 20),
@@ -261,7 +266,6 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                     onPressed: () {
                       if (workoutName == 'Undefined') {
-                        // Afficher un dialogue d'alerte
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -278,7 +282,7 @@ class _MenuPageState extends State<MenuPage> {
                               actions: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop(); // Fermer le dialogue
+                                    Navigator.of(context).pop(); 
                                   },
                                   child: const Text("OK"),
                                 ),
@@ -287,7 +291,7 @@ class _MenuPageState extends State<MenuPage> {
                           },
                         );
                       } else {
-                        // Naviguer vers RecapWorkout si un workout est défini
+                        // Navigate to RecapWorkout if a workout is defined
                         Navigator.push(
                           context,
                           MaterialPageRoute(

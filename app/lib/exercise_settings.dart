@@ -21,6 +21,9 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
   final TextEditingController _repetitionsController = TextEditingController();
   final TextEditingController _restTimeController = TextEditingController();
 
+  /**
+   * @brief Verify that the inputs are all correctly filled
+   */
   void _validateInputs() {
     if (_seriesController.text.isEmpty) {
       _showErrorDialog('Please fill the Series input.');
@@ -35,12 +38,12 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
       return;
     }
 
-    // Convertir les entrées en int
+    // Convert inputs to int
     int series = int.tryParse(_seriesController.text) ?? 0;
     int repetitions = int.tryParse(_repetitionsController.text) ?? 0;
     int restTime = int.tryParse(_restTimeController.text) ?? 0;
 
-    // Rediriger vers CreateWorkoutPage avec les arguments
+    // Redirect to CreateWorkoutPage with the arguments when settings finished
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -54,6 +57,11 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
     );
   }
 
+  /**
+   * @brief Show a dialog when a input is not filled
+   * 
+   * message : The message to be printed on the dialog
+   */
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
@@ -182,7 +190,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
             // Button "Save Exercise"
             SizedBox(
-              width: double.infinity, // S'adapte à la largeur de l'écran
+              width: double.infinity, 
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF242b35),
