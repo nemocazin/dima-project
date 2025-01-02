@@ -39,6 +39,11 @@ class RecapWorkout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.07;
+    double fontSize = screenHeight * 0.025;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1c1e22),
@@ -68,11 +73,11 @@ class RecapWorkout extends StatelessWidget {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(padding),
                   child: Text(
-                    '$workoutName Recap', 
-                    style: const TextStyle(
-                      fontSize: 24.0,
+                    '$workoutName Recap',
+                    style: TextStyle(
+                      fontSize: fontSize * 1.5,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -86,7 +91,7 @@ class RecapWorkout extends StatelessWidget {
                       final exercise = exercises[index];
 
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02, horizontal: padding),
                         child: Container(
                           decoration: BoxDecoration(
                             color: const Color(0xFF242b35),
@@ -94,15 +99,16 @@ class RecapWorkout extends StatelessWidget {
                           ),
                           child: ListTile(
                             title: Text(
-                              exercise[1] ?? 'Unknown Exercise',  
-                              style: const TextStyle(
+                              exercise[1] ?? 'Unknown Exercise',
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
+                                fontSize: fontSize,
                               ),
                             ),
                             subtitle: Text(
                               'Series: ${exercise[seriesIndex]}, Repetitions: ${exercise[repetitionsIndex]}, Rest: ${exercise[restTimeIndex]} sec',
-                              style: const TextStyle(color: Colors.white70),
+                              style: TextStyle(color: Colors.white70, fontSize: fontSize * 0.8),
                             ),
                           ),
                         ),
@@ -110,11 +116,12 @@ class RecapWorkout extends StatelessWidget {
                     },
                   ),
                 ),
+                
                 // Bottom Button
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(padding),
                   child: SizedBox(
-                    width: double.infinity, 
+                    width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF242b35),
@@ -139,6 +146,7 @@ class RecapWorkout extends StatelessWidget {
                       },
                       child: Text(
                         startWorkout ? 'Go to Timer' : 'Return to Home Page',
+                        style: TextStyle(fontSize: fontSize),
                       ),
                     ),
                   ),

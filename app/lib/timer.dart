@@ -181,6 +181,11 @@ class _TimerPageState extends State<TimerPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.07;
+    double fontSize = screenHeight * 0.025;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1c1e22),
@@ -197,62 +202,64 @@ class _TimerPageState extends State<TimerPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // Timer display
                 Expanded(
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // Timer
                       children: [
                         Text(
                           timerLabel,
-                          style: const TextStyle(
-                            fontSize: 24, 
+                          style: TextStyle(
+                            fontSize: fontSize * 1.5, 
                             fontWeight: FontWeight.bold,
                             color: Colors.white  
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: screenHeight * 0.02),
+                        // Sets left
                         Text(
                           'Time Remaining: $timerSeconds seconds',
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize: fontSize * 1.2,
                             color: Colors.white    
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 20),
-                        // Sets left
+                        SizedBox(height: screenHeight * 0.02),
                         Text(
                           exercises.isNotEmpty && currentExerciseIndex < exercises.length
                               ? 'Left: ${exercises[currentExerciseIndex][8] - currentSet + 1}/${exercises[currentExerciseIndex][8]}'
                               : '',
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize: fontSize * 1.2,
                             color: Colors.white    
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
                   ),
                 ),
-                // Bottom buttons
+                // Button at the bottom
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(padding),
                   child: Column(
                     children: [
-                      // Start / Stop button
                       if (currentExerciseIndex < exercises.length)
                         ElevatedButton(
                           onPressed: toggleWorkout,
-                          child: Text(isWorkoutRunning ? 'Stop Workout' : 'Start Workout'),
+                          child: Text(
+                            isWorkoutRunning ? 'Stop Workout' : 'Start Workout',
+                            style: TextStyle(fontSize: fontSize * 1.2), 
+                          ),
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 50),
                             backgroundColor: const Color(0xFF242b35),
                             alignment: Alignment.center,
                           ),
                         ),
-                      // End of the workout button
                       if (currentExerciseIndex >= exercises.length)
                         ElevatedButton(
                           onPressed: () {
@@ -263,12 +270,15 @@ class _TimerPageState extends State<TimerPage> {
                               ),
                             );
                           },
+                          child: Text(
+                            'End Workout',
+                            style: TextStyle(fontSize: fontSize * 1.2), 
+                          ),
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 50),
                             backgroundColor: const Color(0xFF242b35),
                             alignment: Alignment.center,
                           ),
-                          child: const Text('End Workout'),
                         ),
                     ],
                   ),

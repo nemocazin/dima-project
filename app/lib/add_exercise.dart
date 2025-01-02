@@ -36,7 +36,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
         filteredExercisesNames = List.from(exercisesNames);
       });
     } catch (e) {
-      print('Error loading exercises: $e'); //TODO : maybe remove or replace
+      print('Error loading exercises: $e'); 
     }
   }
 
@@ -54,6 +54,9 @@ class _AddExercisePageState extends State<AddExercisePage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.05; 
+    double fontSize = screenHeight * 0.024; 
 
     return Scaffold(
       appBar: AppBar(
@@ -68,23 +71,23 @@ class _AddExercisePageState extends State<AddExercisePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(padding),
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
                 labelText: 'Search exercise',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.white, fontSize: fontSize),
                 prefixIcon: Icon(Icons.search, color: Colors.white), 
                 border: OutlineInputBorder(),
               ),
-              style: TextStyle(color: Colors.white), 
+              style: TextStyle(color: Colors.white, fontSize: fontSize), 
               onChanged: filterExercisesFromString, 
             ),
           ),
 
           // Container with exercises
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: padding),
             child: Container(
               height: screenHeight / 2, 
               decoration: BoxDecoration(
@@ -99,6 +102,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
                       filteredExercisesNames[index],
                       style: TextStyle(
                         color: Colors.white, 
+                        fontSize: fontSize, 
                       ),
                     ),
                     onTap: () {
@@ -116,14 +120,13 @@ class _AddExercisePageState extends State<AddExercisePage> {
           ),
 
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(padding),
             alignment: Alignment.centerLeft,
             child: Text(
               'Filters',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white), // Couleur du texte
+              style: TextStyle(fontSize: fontSize * 1.2, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
-          
         ],
       ),
     );

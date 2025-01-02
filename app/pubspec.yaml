@@ -33,6 +33,7 @@ dependencies:
   intl: ^0.18.0
   csv: ^5.0.1
   cupertino_icons: ^1.0.8
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:
@@ -51,11 +52,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
   assets:
     - assets/exercises.csv
-    - data/
+    - data/program.json
+    - data/schedule.json

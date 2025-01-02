@@ -47,13 +47,18 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         // Adding exercise to the selected list and making calculations
         selectedExercises.add(widget.exerciseData!); 
         totalTimeMin = ((totalTimeSec) ~/ 60).toInt();
-        totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series!;
+        totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series!; // TODO : fix 
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.07; 
+    double fontSize = screenHeight * 0.025;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1c1e22),
@@ -76,7 +81,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         children: [
           // Header with totals and config
           Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(padding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -87,7 +92,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                     Text(
                       'Total time: $totalTimeMin min',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: fontSize,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFE1E0E0),
                       ),
@@ -96,7 +101,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                     Text(
                       'Total calories: $totalCalories kcal',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: fontSize,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFE1E0E0),
                       ),
@@ -155,13 +160,13 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                   final exercise = selectedExercises[index];
                   return Card(
                     color: const Color(0xFF242b35),
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    margin: EdgeInsets.symmetric(horizontal: padding, vertical: 8.0),
                     child: ListTile(
                       title: Text(
                         exercise[exerciseName],
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: fontSize,
                         ),
                       ),
                       // Red cross
@@ -184,7 +189,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
 
           // Bottom buttons fixed at the bottom
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(padding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -200,7 +205,10 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                         MaterialPageRoute(builder: (context) => AddExercisePage()),
                       );
                     },
-                    child: const Text('Add Exercise'),
+                    child: Text(
+                      'Add Exercise',
+                      style: TextStyle(fontSize: fontSize),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -211,7 +219,10 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                       alignment: Alignment.center,
                     ),
                     onPressed: () => _showSaveDialog(),
-                    child: const Text('Save'),
+                    child: Text(
+                      'Save',
+                      style: TextStyle(fontSize: fontSize),
+                    ),
                   ),
                 ),
               ],

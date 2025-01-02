@@ -92,6 +92,11 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.07; 
+    double fontSize = screenHeight * 0.025;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1c1e22),
@@ -103,7 +108,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
       ),
       backgroundColor: const Color(0xFF1c1e22),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -111,8 +116,8 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
             Center(
               child: Text(
                 widget.exerciseSelected[exerciseNAME],
-                style: const TextStyle(
-                  fontSize: 24,
+                style: TextStyle(
+                  fontSize: fontSize * 1.5,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -144,7 +149,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: fontSize), 
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
@@ -163,7 +168,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: fontSize), 
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
@@ -182,7 +187,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: fontSize), 
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
@@ -190,19 +195,19 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
             // Button "Save Exercise"
             SizedBox(
-              width: double.infinity, 
+              width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF242b35),
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02), 
                 ),
                 onPressed: _validateInputs,
-                child: const Text(
+                child: Text(
                   'Save Exercise',
                   style: TextStyle(
-                    fontSize: 16, 
-                    backgroundColor: Color(0xFF242b35), 
+                    fontSize: fontSize, 
+                    backgroundColor: const Color(0xFF242b35), 
                   ),
                 ),
               ),

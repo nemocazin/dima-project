@@ -17,7 +17,9 @@ class _ManageWorkoutState extends State<ManageWorkout> {
     _loadWorkouts();
   }
 
-  // Loading data from the JSON file
+  /**
+   * @brief Loading data from the JSON file
+   */
   Future<void> _loadWorkouts() async {
     final file = File('data/program.json');
     if (await file.exists()) {
@@ -28,7 +30,9 @@ class _ManageWorkoutState extends State<ManageWorkout> {
     }
   }
 
-  // Delete a workout and update the JSON file with the correct indentation
+  /**
+   * @brief Delete a workout and update the JSON file
+   */
   Future<void> _deleteWorkout(int index) async {
     setState(() {
       workouts.removeAt(index);
@@ -42,67 +46,73 @@ class _ManageWorkoutState extends State<ManageWorkout> {
     await file.writeAsString(formattedJson);
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth * 0.07;
+    double fontSize = screenHeight * 0.025;
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1c1e22),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.blue.shade100,
+          onPressed: () => Navigator.pop(context)
+        ),
+      ),
       backgroundColor: const Color(0xFF1c1e22),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        color: Colors.blue.shade100,
-        onPressed: () => Navigator.pop(context)
-      ),
-    ),
-    backgroundColor: const Color(0xFF1c1e22),
-    body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: workouts.isEmpty 
-      ? Center( // If the list is empty, no workouts
-          child: Text(
-            'No more workouts program',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      body: Padding(
+        padding: EdgeInsets.all(padding),
+        child: workouts.isEmpty 
+        ? Center( // If the list is empty, no workouts
+            child: Text(
+              'No more workouts program',
+              style: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
+          )
+          // List of all the workouts
+        : ListView.builder(
+            itemCount: workouts.length,
+            itemBuilder: (context, index) {
+              final workout = workouts[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8.0), 
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: padding, vertical: screenHeight * 0.015), 
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF242b35),
+                    borderRadius: BorderRadius.circular(8), 
+                  ),
+                  child: Row( 
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        workout['workoutName'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: fontSize,
+                        ),
+                      ),
+                      // Red cross for deleting workouts
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(), 
+                        icon: Icon(Icons.close, color: Colors.red, size: fontSize),
+                        onPressed: () => _deleteWorkout(index),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
-        )
-      : ListView.builder( // List of all the workouts
-        itemCount: workouts.length,
-        itemBuilder: (context, index) {
-          final workout = workouts[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0), 
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
-              decoration: BoxDecoration(
-                color: const Color(0xFF242b35),
-                borderRadius: BorderRadius.circular(8), 
-              ),
-              child: Row( 
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    workout['workoutName'],
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                  // Red cross for deleting workouts
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(), 
-                    icon: Icon(Icons.close, color: Colors.red, size: 20),
-                    onPressed: () => _deleteWorkout(index),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
       ),
-    ),
-  );
-}
+    );
+  }
 }
