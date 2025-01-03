@@ -46,7 +46,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
   void filterExercisesFromString(String query) {
     setState(() {
       filteredExercisesNames = exercisesNames.where((name) {
-        return name.toLowerCase().startsWith(query.toLowerCase());
+        return name.toLowerCase().contains(query.toLowerCase());
       }).toList();
     });
   }

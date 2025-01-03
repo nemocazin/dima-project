@@ -8,6 +8,9 @@ import 'main.dart';
 const int exerciseName = 1;
 const int averageTimeRepet = 3;
 const int caloriesIndex = 6;
+const int setIndex = 8;
+const int repetitionsIndex = 9;
+const int restTimeIndex = 10;
 
 class CreateWorkoutPage extends StatefulWidget {
   final List<dynamic>? exerciseData; 
@@ -47,7 +50,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         // Adding exercise to the selected list and making calculations
         selectedExercises.add(widget.exerciseData!); 
         totalTimeMin = ((totalTimeSec) ~/ 60).toInt();
-        totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series!; // TODO : fix 
+        totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series! * averageTimeRepet ~/ 60;
       });
     }
   }
@@ -90,7 +93,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Total time: $totalTimeMin min',
+                      'Total time: ${_CreateWorkoutPage.totalTimeMin} min',
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
@@ -99,7 +102,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Total calories: $totalCalories kcal',
+                      'Total calories: ${_CreateWorkoutPage.totalCalories} kcal',
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
@@ -178,6 +181,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                         onPressed: () {
                           setState(() {
                             selectedExercises.removeAt(index);
+                            _recalculateTotals();
                           });
                         },
                       ),
@@ -417,6 +421,25 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
     } catch (e) {
       print('Error happened during saving : $e');
     }
+  }
+
+  /**
+   * @brief Recalculate the total time and calories when an exercise is removed
+   */
+  void _recalculateTotals() {
+      _CreateWorkoutPage.totalTimeSec = 0;
+      _CreateWorkoutPage.totalCalories = 0;
+
+      for (var exercise in selectedExercises) {
+        int series = exercise[setIndex] as int;
+        int repetitions = exercise[repetitionsIndex] as int; 
+        int restTime = exercise[restTimeIndex] as int;
+        int exerciseCalories = exercise[caloriesIndex] as int;
+
+        _CreateWorkoutPage.totalTimeSec += (((averageTimeRepet * repetitions) * series) + (series * restTime)).toInt();
+        _CreateWorkoutPage.totalCalories += repetitions *  series * averageTimeRepet * exerciseCalories  ~/ 60;
+      }
+      totalTimeMin = totalTimeSec ~/ 60;
   }
 
   /**

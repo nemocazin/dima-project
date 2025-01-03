@@ -7,6 +7,8 @@ import 'create_workout.dart';
 import 'schedule.dart';
 import 'recap_workout.dart';
 
+const int exerciseDurationIndex = 11;
+
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
 
@@ -89,7 +91,7 @@ class _MenuPageState extends State<MenuPage> {
     for (var program in programData) {
       if (program['workoutName'] == workoutName) {
         for (var exercise in program['exercises']) {
-          totalDuration += (exercise[11] as int);
+          totalDuration += (exercise[exerciseDurationIndex] as int);
         }
       }
     }
