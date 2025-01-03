@@ -15,10 +15,10 @@ class TimerPage extends StatefulWidget {
   TimerPage({required this.workoutName});
 
   @override
-  _TimerPageState createState() => _TimerPageState();
+  TimerPageState createState() => TimerPageState();
 }
 
-class _TimerPageState extends State<TimerPage> {
+class TimerPageState extends State<TimerPage> {
   List<dynamic> exercises = [];
   int currentExerciseIndex = 0;
   int currentSet = 0;

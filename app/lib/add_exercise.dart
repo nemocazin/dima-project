@@ -6,10 +6,10 @@ import 'exercise_settings.dart';
 
 class AddExercisePage extends StatefulWidget {
   @override
-  _AddExercisePageState createState() => _AddExercisePageState();
+  AddExercisePageState createState() => AddExercisePageState();
 }
 
-class _AddExercisePageState extends State<AddExercisePage> {
+class AddExercisePageState extends State<AddExercisePage> {
   List<List<dynamic>> exercises = [];
   List<String> exercisesNames = [];
   List<String> filteredExercisesNames = [];
@@ -116,15 +116,6 @@ class _AddExercisePageState extends State<AddExercisePage> {
                   );
                 },
               ),
-            ),
-          ),
-
-          Container(
-            padding: EdgeInsets.all(padding),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Filters',
-              style: TextStyle(fontSize: fontSize * 1.2, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
         ],

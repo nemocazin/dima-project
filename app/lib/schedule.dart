@@ -9,10 +9,10 @@ import 'manage_workout.dart';
 
 class WorkoutSchedulePage extends StatefulWidget {
   @override
-  _WorkoutSchedulePageState createState() => _WorkoutSchedulePageState();
+  WorkoutSchedulePageState createState() => WorkoutSchedulePageState();
 }
 
-class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
+class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   List<String> daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   Map<String, String> schedule = {};
   List<String> workoutPrograms = [];
@@ -20,14 +20,14 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   @override
   void initState() {
     super.initState();
-    _loadWorkoutPrograms();
-    _loadSchedule();
+    loadWorkoutPrograms();
+    loadSchedule();
   }
 
   /**
    * @brief Load the JSON file and save in a variables all the workout saved
    */
-  Future<void> _loadWorkoutPrograms() async {
+  Future<void> loadWorkoutPrograms() async {
     try {
       final file = File('data/program.json');
       if (await file.exists()) {
@@ -46,7 +46,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   /**
    * @brief Load all the workout associated with the days
    */
-  Future<void> _loadSchedule() async {
+  Future<void> loadSchedule() async {
     try {
       final file = File('data/schedule.json');
       if (await file.exists()) {
@@ -63,7 +63,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   /**
    * @brief Save the new schedule
    */
-  Future<void> _saveSchedule() async {
+  Future<void> saveSchedule() async {
     try {
       final file = File('data/schedule.json');
       // Ensure all days are saved, even if not defined
@@ -81,17 +81,17 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
    * @brief Rest all days with the "Undefined" workout
    *        Used by the "reset all" button
    */
-  void _resetSchedule() {
+  void resetSchedule() {
     setState(() {
       schedule = {for (var day in daysOfWeek) day: "Undefined"};
     });
-    _saveSchedule();
+    saveSchedule();
   }
 
   /**
    * @brief Dialog to show all the workouts when selecting one
    */
-  void _selectWorkoutProgram(String day) async {
+  void selectWorkoutProgram(String day) async {
     if (workoutPrograms.isEmpty) return;
 
     String? selectedProgram = await showDialog<String>(
@@ -125,7 +125,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
       setState(() {
         schedule[day] = selectedProgram;
       });
-      _saveSchedule();
+      saveSchedule();
       if (selectedProgram == "Undefined") {
         return;
       } else if (schedule.length == daysOfWeek.length) {
@@ -164,7 +164,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.refresh, color: Colors.blue.shade100),
-            onPressed: _resetSchedule,
+            onPressed: resetSchedule,
           ),
         ],
       ),
@@ -201,7 +201,7 @@ class _WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
                           color: Colors.white,
                         ),
                       ),
-                      onTap: () => _selectWorkoutProgram(day),
+                      onTap: () => selectWorkoutProgram(day),
                     ),
                   ),
                 );

@@ -27,10 +27,10 @@ class CreateWorkoutPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CreateWorkoutPage createState() => _CreateWorkoutPage();
+  CreateWorkoutState createState() => CreateWorkoutState();
 }
 
-class _CreateWorkoutPage extends State<CreateWorkoutPage> {
+class CreateWorkoutState extends State<CreateWorkoutPage> {
   static List<List<dynamic>> selectedExercises = [];
   static int totalTimeSec = 0; 
   static int totalTimeMin = 0; 
@@ -45,12 +45,10 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         widget.exerciseData?.add(widget.series);
         widget.exerciseData?.add(widget.repetitions);
         widget.exerciseData?.add(widget.restTime);
-        totalTimeSec = (((averageTimeRepet * widget.repetitions!) * widget.series!) + widget.series! * widget.restTime!).toInt();
-        widget.exerciseData?.add(totalTimeSec);
-        // Adding exercise to the selected list and making calculations
         selectedExercises.add(widget.exerciseData!); 
-        totalTimeMin = ((totalTimeSec) ~/ 60).toInt();
-        totalCalories = (widget.repetitions! * (widget.exerciseData?[caloriesIndex] as int? ?? 0)) * widget.series! * averageTimeRepet ~/ 60;
+        // Adding exercise to the selected list and making calculations
+        recalculateTotals();
+        widget.exerciseData?.add(totalTimeSec);
       });
     }
   }
@@ -69,7 +67,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
           icon: const Icon(Icons.arrow_back),
           color: Colors.blue.shade100,
           onPressed: () {
-            _resetVariables();
+            resetVariables();
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -93,7 +91,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Total time: ${_CreateWorkoutPage.totalTimeMin} min',
+                      'Total time: ${CreateWorkoutState.totalTimeMin} min',
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
@@ -102,7 +100,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Total calories: ${_CreateWorkoutPage.totalCalories} kcal',
+                      'Total calories: ${CreateWorkoutState.totalCalories} kcal',
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
@@ -181,7 +179,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                         onPressed: () {
                           setState(() {
                             selectedExercises.removeAt(index);
-                            _recalculateTotals();
+                            recalculateTotals();
                           });
                         },
                       ),
@@ -222,7 +220,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
                       backgroundColor: const Color(0xFF242b35),
                       alignment: Alignment.center,
                     ),
-                    onPressed: () => _showSaveDialog(),
+                    onPressed: () => showSaveDialog(),
                     child: Text(
                       'Save',
                       style: TextStyle(fontSize: fontSize),
@@ -240,7 +238,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
   /**
    * @brief Show the dialog when saving the workout program
    */
-  void _showSaveDialog() async {
+  void showSaveDialog() async {
     TextEditingController workoutNameController = TextEditingController();
 
     /**
@@ -299,9 +297,9 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
               onPressed: () {
                 String workoutName = workoutNameController.text.trim();
                 if (workoutName.isNotEmpty) {
-                  _saveProgram(workoutName, selectedExercises);
+                  saveProgram(workoutName, selectedExercises);
                   Navigator.pop(context);
-                  _resetVariables();
+                  resetVariables();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -353,7 +351,7 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
    * @brief Save the data in the JSON file
    * @warning As there may already be data in the file, we need to save it to add our own data
    */
-  Future<void> _saveProgram(String workoutName, List<List<dynamic>> selectedExercises) async {
+  Future<void> saveProgram(String workoutName, List<List<dynamic>> selectedExercises) async {
     try {
       final file = File('data/program.json');
 
@@ -426,9 +424,9 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
   /**
    * @brief Recalculate the total time and calories when an exercise is removed
    */
-  void _recalculateTotals() {
-      _CreateWorkoutPage.totalTimeSec = 0;
-      _CreateWorkoutPage.totalCalories = 0;
+  void recalculateTotals() {
+      CreateWorkoutState.totalTimeSec = 0;
+      CreateWorkoutState.totalCalories = 0;
 
       for (var exercise in selectedExercises) {
         int series = exercise[setIndex] as int;
@@ -436,20 +434,20 @@ class _CreateWorkoutPage extends State<CreateWorkoutPage> {
         int restTime = exercise[restTimeIndex] as int;
         int exerciseCalories = exercise[caloriesIndex] as int;
 
-        _CreateWorkoutPage.totalTimeSec += (((averageTimeRepet * repetitions) * series) + (series * restTime)).toInt();
-        _CreateWorkoutPage.totalCalories += repetitions *  series * averageTimeRepet * exerciseCalories  ~/ 60;
+        CreateWorkoutState.totalTimeSec += (((averageTimeRepet * repetitions) * series) + (series * restTime)).toInt();
+        CreateWorkoutState.totalCalories += repetitions *  series * averageTimeRepet * exerciseCalories  ~/ 60;
       }
-      totalTimeMin = totalTimeSec ~/ 60;
+      CreateWorkoutState.totalTimeMin = totalTimeSec ~/ 60;
   }
 
   /**
    * @brief Reset all the variables
    *        Used when leaving the page or saving the workout program
    */
-  void _resetVariables() {
-    _CreateWorkoutPage.selectedExercises = [];
-    _CreateWorkoutPage.totalTimeSec = 0;
-    _CreateWorkoutPage.totalTimeMin = 0;
-    _CreateWorkoutPage.totalCalories = 0;
+  void resetVariables() {
+    CreateWorkoutState.selectedExercises = [];
+    CreateWorkoutState.totalTimeSec = 0;
+    CreateWorkoutState.totalTimeMin = 0;
+    CreateWorkoutState.totalCalories = 0;
   }
 }

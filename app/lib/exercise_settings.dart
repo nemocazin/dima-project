@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'create_workout.dart';
 
-const int exerciseNAME = 1;
+const int exerciseNameIndex = 1;
 
 class ExerciseSettingPage extends StatefulWidget {
   
@@ -13,35 +13,35 @@ class ExerciseSettingPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ExerciseSettingPageState createState() => _ExerciseSettingPageState();
+  ExerciseSettingPageState createState() => ExerciseSettingPageState();
 }
 
-class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
-  final TextEditingController _seriesController = TextEditingController();
-  final TextEditingController _repetitionsController = TextEditingController();
-  final TextEditingController _restTimeController = TextEditingController();
+class ExerciseSettingPageState extends State<ExerciseSettingPage> {
+  final TextEditingController seriesController = TextEditingController();
+  final TextEditingController repetitionsController = TextEditingController();
+  final TextEditingController restTimeController = TextEditingController();
 
   /**
    * @brief Verify that the inputs are all correctly filled
    */
-  void _validateInputs() {
-    if (_seriesController.text.isEmpty) {
-      _showErrorDialog('Please fill the Series input.');
+  void validateInputs() {
+    if (seriesController.text.isEmpty) {
+      showErrorDialog('Please fill the Series input.');
       return;
     }
-    if (_repetitionsController.text.isEmpty) {
-      _showErrorDialog('Please fill the Repetitions input.');
+    if (repetitionsController.text.isEmpty) {
+      showErrorDialog('Please fill the Repetitions input.');
       return;
     }
-    if (_restTimeController.text.isEmpty) {
-      _showErrorDialog('Please fill the Rest time input.');
+    if (restTimeController.text.isEmpty) {
+      showErrorDialog('Please fill the Rest time input.');
       return;
     }
 
     // Convert inputs to int
-    int series = int.tryParse(_seriesController.text) ?? 0;
-    int repetitions = int.tryParse(_repetitionsController.text) ?? 0;
-    int restTime = int.tryParse(_restTimeController.text) ?? 0;
+    int series = int.tryParse(seriesController.text) ?? 0;
+    int repetitions = int.tryParse(repetitionsController.text) ?? 0;
+    int restTime = int.tryParse(restTimeController.text) ?? 0;
 
     // Redirect to CreateWorkoutPage with the arguments when settings finished
     Navigator.push(
@@ -62,7 +62,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
    * 
    * message : The message to be printed on the dialog
    */
-  void _showErrorDialog(String message) {
+  void showErrorDialog(String message) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -115,7 +115,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
             // Exercice Name
             Center(
               child: Text(
-                widget.exerciseSelected[exerciseNAME],
+                widget.exerciseSelected[exerciseNameIndex],
                 style: TextStyle(
                   fontSize: fontSize * 1.5,
                   fontWeight: FontWeight.bold,
@@ -138,7 +138,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
             // Series Text Input
             TextField(
-              controller: _seriesController,
+              controller: seriesController,
               decoration: InputDecoration(
                 labelText: 'Series',
                 labelStyle: const TextStyle(color: Colors.white),
@@ -157,7 +157,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
             // Repetitions Text Input
             TextField(
-              controller: _repetitionsController,
+              controller: repetitionsController,
               decoration: InputDecoration(
                 labelText: 'Repetitions',
                 labelStyle: const TextStyle(color: Colors.white),
@@ -176,7 +176,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
 
             // Rest time Text Input
             TextField(
-              controller: _restTimeController,
+              controller: restTimeController,
               decoration: InputDecoration(
                 labelText: 'Rest time (seconds)',
                 labelStyle: const TextStyle(color: Colors.white),
@@ -202,7 +202,7 @@ class _ExerciseSettingPageState extends State<ExerciseSettingPage> {
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02), 
                 ),
-                onPressed: _validateInputs,
+                onPressed: validateInputs,
                 child: Text(
                   'Save Exercise',
                   style: TextStyle(

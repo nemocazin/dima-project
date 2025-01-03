@@ -18,7 +18,7 @@ class RecapWorkout extends StatelessWidget {
   /**
    * @brief Function for retrieving exercise data
    */
-  Future<List<List<dynamic>>> _fetchWorkout(String workoutName) async {
+  Future<List<List<dynamic>>> fetchWorkout(String workoutName) async {
     try {
       final file = File('data/program.json');
       if (await file.exists()) {
@@ -55,7 +55,7 @@ class RecapWorkout extends StatelessWidget {
       ),
       backgroundColor: const Color(0xFF1c1e22),
       body: FutureBuilder<List<List<dynamic>>>(
-        future: _fetchWorkout(workoutName),
+        future: fetchWorkout(workoutName),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
