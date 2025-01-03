@@ -1,3 +1,13 @@
+///
+/// @brief     Page for the principal menu of the app
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'dart:convert'; 
 import 'dart:io'; 
 import 'package:flutter/material.dart';

@@ -1,26 +1,38 @@
+///
+/// @brief     Page to delete saved workouts
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
 class ManageWorkout extends StatefulWidget {
+  const ManageWorkout({super.key});
+
   @override
-  _ManageWorkoutState createState() => _ManageWorkoutState();
+  ManageWorkoutState createState() => ManageWorkoutState();
 }
 
-class _ManageWorkoutState extends State<ManageWorkout> {
+class ManageWorkoutState extends State<ManageWorkout> {
   List<Map<String, dynamic>> workouts = [];
 
   @override
   void initState() {
     super.initState();
-    _loadWorkouts();
+    loadWorkouts();
   }
 
   /**
    * @brief Loading data from the JSON file
    */
-  Future<void> _loadWorkouts() async {
+  Future<void> loadWorkouts() async {
     final file = File('data/program.json');
     if (await file.exists()) {
       String contents = await file.readAsString();
@@ -33,7 +45,7 @@ class _ManageWorkoutState extends State<ManageWorkout> {
   /**
    * @brief Delete a workout and update the JSON file
    */
-  Future<void> _deleteWorkout(int index) async {
+  Future<void> deleteWorkout(int index) async {
     setState(() {
       workouts.removeAt(index);
     });
@@ -104,7 +116,7 @@ class _ManageWorkoutState extends State<ManageWorkout> {
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(), 
                         icon: Icon(Icons.close, color: Colors.red, size: fontSize),
-                        onPressed: () => _deleteWorkout(index),
+                        onPressed: () => deleteWorkout(index),
                       ),
                     ],
                   ),

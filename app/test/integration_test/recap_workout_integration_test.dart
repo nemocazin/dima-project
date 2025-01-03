@@ -1,3 +1,13 @@
+///
+/// @brief     Integration test file of recap_workout.dart
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../lib/recap_workout.dart'; 
@@ -5,25 +15,25 @@ import 'dart:convert';
 
 /** A simulated selected exercise */
 final mockData = jsonEncode([
-{
-  'workoutName': 'Test Workout',
-  "exercises": [
-    [
-      5,
-      "Decline Dumbbell Press",
-      "Upper Body",
-      "Push",
-      "Pectorals (Lower)",
-      "Triceps",
-      6,
-      "Base",
-      1,
-      1,
-      1,
-      4
+  {
+    'workoutName': 'Test Workout',
+    "exercises": [
+      [
+        5,
+        "Decline Dumbbell Press",
+        "Upper Body",
+        "Push",
+        "Pectorals (Lower)",
+        "Triceps",
+        6,
+        "Base",
+        1,
+        1,
+        1,
+        4
+      ]
     ]
-  ]
-}
+  }
 ]);
 
 /** Method to simulates reading the file */

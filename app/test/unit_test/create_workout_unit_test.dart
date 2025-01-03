@@ -1,5 +1,15 @@
+///
+/// @brief     Unit test file of create_workout.dart
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter_test/flutter_test.dart';
-import '../../lib/create_workout.dart'; // Remplacez par le bon chemin
+import '../../lib/create_workout.dart'; 
 
 void main() {
   group('Tests Unitaires - CreateWorkoutPage', () {

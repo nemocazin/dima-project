@@ -1,3 +1,14 @@
+///
+/// @brief     Page to add an exercise to the workout
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
+
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
 import 'dart:io';
@@ -5,6 +16,8 @@ import 'dart:io';
 import 'exercise_settings.dart';
 
 class AddExercisePage extends StatefulWidget {
+  const AddExercisePage({super.key});
+
   @override
   AddExercisePageState createState() => AddExercisePageState();
 }

@@ -1,3 +1,13 @@
+///
+/// @brief     Page to choose the setting of the added exercise
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,10 +17,12 @@ const int exerciseNameIndex = 1;
 
 class ExerciseSettingPage extends StatefulWidget {
   
+  const ExerciseSettingPage({
+    super.key, 
+    required this.exerciseSelected
+  });
+  
   final List<dynamic> exerciseSelected;
-
-  const ExerciseSettingPage({Key? key, required this.exerciseSelected})
-      : super(key: key);
 
   @override
   ExerciseSettingPageState createState() => ExerciseSettingPageState();

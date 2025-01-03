@@ -1,3 +1,13 @@
+///
+/// @brief     Page to recap the exercises of a workout
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -13,7 +23,11 @@ class RecapWorkout extends StatelessWidget {
   final bool startWorkout;
   final String workoutName;
 
-  const RecapWorkout({Key? key, required this.startWorkout, required this.workoutName}) : super(key: key);
+  const RecapWorkout({
+    super.key,
+    required this.startWorkout,
+    required this.workoutName
+  });
 
   /**
    * @brief Function for retrieving exercise data

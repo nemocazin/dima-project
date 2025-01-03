@@ -1,3 +1,13 @@
+///
+/// @brief     Page to associate a workout to a day of the week
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,6 +18,8 @@ import 'main.dart';
 import 'manage_workout.dart';
 
 class WorkoutSchedulePage extends StatefulWidget {
+  const WorkoutSchedulePage({super.key});
+  
   @override
   WorkoutSchedulePageState createState() => WorkoutSchedulePageState();
 }

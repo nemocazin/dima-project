@@ -1,3 +1,13 @@
+///
+/// @brief     Page to do the workout with a timer
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -10,9 +20,13 @@ const int repetitionsIndex = 9;
 const int restTimeIndex = 10;
 
 class TimerPage extends StatefulWidget {
+  
+  const TimerPage({
+    super.key, 
+    required this.workoutName
+  });
+  
   final String workoutName;
-
-  TimerPage({required this.workoutName});
 
   @override
   TimerPageState createState() => TimerPageState();

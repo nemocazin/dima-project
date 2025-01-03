@@ -1,3 +1,13 @@
+///
+/// @brief     Integration test file of timer.dart
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import '../../lib/timer.dart';

@@ -1,3 +1,13 @@
+///
+/// @brief     Integration test file of schedule.dart
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../lib/schedule.dart'; 

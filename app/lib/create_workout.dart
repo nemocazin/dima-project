@@ -1,3 +1,13 @@
+///
+/// @brief     Page to create a workout
+///
+/// @author    CAZIN Némo & Adrien Paliferro
+/// @date      2024 - 2025
+/// 
+/// Politecnico Di Milano
+/// 
+library DIMA;
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -19,12 +29,12 @@ class CreateWorkoutPage extends StatefulWidget {
   final int? restTime;               
 
   const CreateWorkoutPage({
-    Key? key,
+    super.key,
     this.exerciseData,   
     this.series,         
     this.repetitions,    
     this.restTime,       
-  }) : super(key: key);
+  });
 
   @override
   CreateWorkoutState createState() => CreateWorkoutState();
