@@ -22,7 +22,7 @@ void main() {
       await tester.pumpAndSettle();
 
       /** Check if ListTile widgets are displayed */
-      expect(find.byType(ListTile), findsNothing);
+      expect(find.byType(ListTile), findsAny);
     });
 
 

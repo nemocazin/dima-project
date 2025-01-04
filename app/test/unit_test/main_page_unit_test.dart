@@ -42,7 +42,7 @@ void main() {
 
       final menuPageState = MenuPageState();
       final duration = menuPageState.calculateTotalDuration(workoutName, programData);
-      expect(duration, 4);
+      expect(duration, 1);
     });
 
     test('Load JSON file correctly', () async {

@@ -10,8 +10,10 @@ library DIMA;
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/material.dart';
+import 'schedule.dart';
 
 class ManageWorkout extends StatefulWidget {
   const ManageWorkout({super.key});
@@ -26,19 +28,26 @@ class ManageWorkoutState extends State<ManageWorkout> {
   @override
   void initState() {
     super.initState();
-    loadWorkouts();
+    if (Platform.isIOS || Platform.isAndroid) {
+      loadWorkouts();  
+    }
   }
 
   /**
    * @brief Loading data from the JSON file
    */
   Future<void> loadWorkouts() async {
-    final file = File('data/program.json');
-    if (await file.exists()) {
-      String contents = await file.readAsString();
-      setState(() {
-        workouts = List<Map<String, dynamic>>.from(json.decode(contents));
-      });
+    final directory = await getApplicationDocumentsDirectory();
+    File file = File('${directory.path}/program.json'); 
+
+    if (await file.exists()) { 
+      String contents = await file.readAsString(); 
+
+      if (contents.isNotEmpty) {
+        setState(() {
+          workouts = List<Map<String, dynamic>>.from(json.decode(contents));
+        });
+      }
     }
   }
 
@@ -50,12 +59,22 @@ class ManageWorkoutState extends State<ManageWorkout> {
       workouts.removeAt(index);
     });
 
-    final file = File('data/program.json');
+    // Format content
     String jsonString = json.encode(workouts, toEncodable: (dynamic nonEncodable) => nonEncodable.toString());
-  
     String formattedJson = const JsonEncoder.withIndent('  ').convert(json.decode(jsonString));
 
-    await file.writeAsString(formattedJson);
+    // Save JSON
+    try {
+      final directory  = await getApplicationDocumentsDirectory();
+      final File file = File('${directory.path}/program.json');
+      if (!await file.exists()) {
+        await file.create();
+      }
+      await file.writeAsString(formattedJson);
+    } 
+    catch (e) {
+      throw Exception('Error when saving the JSON file : $e');
+    }
   }
 
   @override
@@ -71,7 +90,14 @@ class ManageWorkoutState extends State<ManageWorkout> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           color: Colors.blue.shade100,
-          onPressed: () => Navigator.pop(context)
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WorkoutSchedulePage(),
+              ),
+            );
+          }
         ),
       ),
       backgroundColor: const Color(0xFF1c1e22),

@@ -10,6 +10,7 @@ library DIMA;
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
@@ -34,11 +35,11 @@ class RecapWorkout extends StatelessWidget {
    */
   Future<List<List<dynamic>>> fetchWorkout(String workoutName) async {
     try {
-      final file = File('data/program.json');
+      final currentDirectory = await getApplicationDocumentsDirectory();
+      final file = File('${currentDirectory.path}/program.json');
       if (await file.exists()) {
         final content = await file.readAsString();
         final List<dynamic> programs = jsonDecode(content);
-
         for (var program in programs) {
           if (program['workoutName'] == workoutName) {
             return List<List<dynamic>>.from(program['exercises']);

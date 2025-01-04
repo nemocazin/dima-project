@@ -10,6 +10,7 @@ library DIMA;
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'recap_workout.dart';
@@ -32,8 +33,31 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   @override
   void initState() {
     super.initState();
-    loadWorkoutPrograms();
-    loadSchedule();
+    loadWorkoutPrograms().then((_) {
+      loadSchedule().then((_) {
+        validateSchedule();
+      });
+    });
+  }
+
+  /**
+   * @brief Checks that each associated program still exists
+   *        If not, replace with ‘Undefined’.
+   */
+  void validateSchedule() {
+    bool hasChanges = false;
+    
+    schedule.forEach((day, workout) {
+      if (workout != "Undefined" && !workoutPrograms.contains(workout)) {
+        schedule[day] = "Undefined";
+        hasChanges = true;
+      }
+    });
+
+    if (hasChanges) {
+      setState(() {});
+      saveSchedule(); 
+    }
   }
 
   /**
@@ -41,7 +65,8 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
    */
   Future<void> loadWorkoutPrograms() async {
     try {
-      final file = File('data/program.json');
+      final directory = await getApplicationDocumentsDirectory();
+      File file = File('${directory.path}/program.json'); 
       if (await file.exists()) {
         final content = await file.readAsString();
         final List<dynamic> programs = jsonDecode(content);
@@ -60,7 +85,8 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
    */
   Future<void> loadSchedule() async {
     try {
-      final file = File('data/schedule.json');
+      final directory = await getApplicationDocumentsDirectory();
+      File file = File('${directory.path}/schedule.json'); 
       if (await file.exists()) {
         final content = await file.readAsString();
         setState(() {
@@ -77,7 +103,8 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
    */
   Future<void> saveSchedule() async {
     try {
-      final file = File('data/schedule.json');
+      final directory = await getApplicationDocumentsDirectory();
+      File file = File('${directory.path}/schedule.json'); 
       // Ensure all days are saved, even if not defined
       Map<String, String> completeSchedule = {
         for (var day in daysOfWeek) day: schedule[day] ?? "Undefined"
@@ -109,11 +136,16 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
     String? selectedProgram = await showDialog<String>(
       context: context,
       builder: (BuildContext context) {
+        double screenHeight = MediaQuery.of(context).size.height;
+        double fontSize = screenHeight * 0.024; 
         return AlertDialog(
           backgroundColor: const Color(0xFF242b35),
           title: Text(
             "Select Workout Program for $day",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize
+            ),
           ),
           content: Container(
             width: double.maxFinite,
@@ -123,7 +155,10 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
                 return ListTile(
                   title: Text(
                     program,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: fontSize * 0.9
+                    ),
                   ),
                   onTap: () => Navigator.pop(context, program),
                 );

@@ -12,6 +12,7 @@ import 'dart:convert';
 import 'dart:io'; 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; 
+import 'package:path_provider/path_provider.dart';
 
 import 'create_workout.dart';
 import 'schedule.dart';
@@ -34,7 +35,41 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
+    createFilesIfNotExist();
     loadWorkoutData();
+  }
+
+  /**
+   * @brief Create 2 JSON files if not existing at the start of the app
+   */
+  Future<void> createFilesIfNotExist() async {
+    final currentDirectory  = await getApplicationDocumentsDirectory();
+    String schedulePath = '${currentDirectory.path}/schedule.json';
+    String programPath = '${currentDirectory.path}/program.json';
+
+    // Verify if schedule.json exist
+    File scheduleFile = File(schedulePath);
+    if (!await scheduleFile.exists()) {
+      Map<String, String> defaultSchedule = {
+        "Monday": "Undefined",
+        "Tuesday": "Undefined",
+        "Wednesday": "Undefined",
+        "Thursday": "Undefined",
+        "Friday": "Undefined",
+        "Saturday": "Undefined",
+        "Sunday": "Undefined"
+      };
+      await scheduleFile.create(recursive: true); 
+      await scheduleFile.writeAsString(jsonEncode(defaultSchedule)); 
+    }
+
+    // Verify if program.json exist
+    File programFile = File(programPath);
+    if (!await programFile.exists()) {
+      List<dynamic> defaultProgram = [];
+      await programFile.create(recursive: true); 
+      await programFile.writeAsString(jsonEncode(defaultProgram)); 
+    }
   }
 
   /**
@@ -42,8 +77,9 @@ class MenuPageState extends State<MenuPage> {
    *        If no workout associated with the current date, declare undefined
    */
   Future<void> loadWorkoutData() async {
-    var scheduleData = await loadJson('data/schedule.json');
-    var programData = await loadJson('data/program.json');
+    final currentDirectory  = await getApplicationDocumentsDirectory();
+    var scheduleData = await loadJson('${currentDirectory.path}/schedule.json');
+    var programData = await loadJson('${currentDirectory.path}/program.json');
 
     DateTime now = DateTime.now();
     String dayName = DateFormat('EEEE').format(now);
@@ -69,20 +105,19 @@ class MenuPageState extends State<MenuPage> {
    * @brief Load a JSON file
    */
   Future<dynamic> loadJson(String path) async {
-    try {
-      File file = File(path);
-      String contents = await file.readAsString();
-      
-      // Check if the content is empty
-      if (contents.isEmpty) {
-        throw FormatException('JSON File empty');
-      }
-      return json.decode(contents); 
-    } catch (e) {
-      print('Error loading JSON file : $e');
-      return {};
+  try {
+    File file = File(path);
+    final content = await file.readAsString();
+    if (content.isEmpty) {
+      throw FormatException('JSON File is empty');
     }
+    return json.decode(content); 
+  } 
+  catch (e) {
+    print('Error loading JSON file: $e');
+    return {}; 
   }
+}
 
   /**
    * @brief Saving a JSON file
@@ -104,7 +139,7 @@ class MenuPageState extends State<MenuPage> {
         }
       }
     }
-    return totalDuration;
+    return (totalDuration ~/ 4);
   }
 
   /**
@@ -113,9 +148,10 @@ class MenuPageState extends State<MenuPage> {
    *        we need to updated by hand the file 
    */
   Future<void> updateSchedule(String day, String newWorkout) async {
-    var scheduleData = await loadJson('data/schedule.json');
+    final currendDirectory  = await getApplicationDocumentsDirectory();
+    var scheduleData = await loadJson('${currendDirectory}/schedule.json');
     scheduleData[day] = newWorkout;
-    await saveJson('data/schedule.json', scheduleData);
+    await saveJson('${currendDirectory}/schedule.json', scheduleData);
     await loadWorkoutData();
   }
 
@@ -255,8 +291,12 @@ class MenuPageState extends State<MenuPage> {
                         ),
                       ).then((_) => loadWorkoutData());
                     },
-                    child: Text("Modify Schedule", 
-                      style: TextStyle(fontSize: fontSize)
+                    child: Text(
+                      "Modify Schedule", 
+                      style: TextStyle(
+                        fontSize: fontSize
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -273,18 +313,30 @@ class MenuPageState extends State<MenuPage> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               backgroundColor: const Color(0xFF242b35),
-                              title: const Text(
+                              title: Text(
                                 "Warning !",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: fontSize
+                                ),
                               ),
-                              content: const Text(
+                              content: Text(
                                 "No workout selected for today ! Please select one.",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: fontSize
+                                ),
                               ),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text("OK"),
+                                  child: Text(
+                                    "OK",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: fontSize * 0.9,
+                                    ),
+                                  ),
                                 ),
                               ],
                             );
@@ -302,8 +354,12 @@ class MenuPageState extends State<MenuPage> {
                         );
                       }
                     },
-                    child: Text("Start Workout", 
-                      style: TextStyle(fontSize: fontSize)
+                    child: Text(
+                      "Start Workout", 
+                      style: TextStyle(
+                        fontSize: fontSize
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),

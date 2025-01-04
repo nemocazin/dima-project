@@ -11,8 +11,7 @@ library DIMA;
 
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
-import 'dart:io';
-
+import 'package:flutter/services.dart' show rootBundle;
 import 'exercise_settings.dart';
 
 class AddExercisePage extends StatefulWidget {
@@ -38,20 +37,19 @@ class AddExercisePageState extends State<AddExercisePage> {
    * @brief Load all of the exercises names to show it on the app
    */
   Future<void> loadExercisesNames() async {
-    try {
-      final file = File('assets/exercises.csv');
-      final csvData = await file.readAsString();
-      setState(() {
-        exercises = const CsvToListConverter().convert(csvData);
-        for (int i = 1; i < exercises.length; i++) {
-          exercisesNames.add(exercises[i][1].toString());
-        }
-        filteredExercisesNames = List.from(exercisesNames);
-      });
-    } catch (e) {
-      print('Error loading exercises: $e'); 
-    }
+  try {
+    final csvData = await rootBundle.loadString('assets/exercises.csv');
+    setState(() {
+      exercises = const CsvToListConverter().convert(csvData);
+      for (int i = 1; i < exercises.length; i++) {
+        exercisesNames.add(exercises[i][1].toString());
+      }
+      filteredExercisesNames = List.from(exercisesNames);
+    });
+  } catch (e) {
+    print('Error loading exercises: $e');
   }
+}
 
   /**
    * @brief Filter the exercises container with the string written
@@ -102,7 +100,7 @@ class AddExercisePageState extends State<AddExercisePage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: Container(
-              height: screenHeight / 2, 
+              height: screenHeight / 1.5, 
               decoration: BoxDecoration(
                 color: const Color(0xFF242b35), 
                 borderRadius: BorderRadius.circular(20.0), 

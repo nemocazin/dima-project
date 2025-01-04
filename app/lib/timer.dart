@@ -10,8 +10,9 @@ library DIMA;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'main.dart';
 
@@ -52,19 +53,25 @@ class TimerPageState extends State<TimerPage> {
    * @brief Load workout
    */
   Future<void> loadWorkoutData() async {
-    String jsonString = await rootBundle.loadString('data/program.json');
-    List<dynamic> data = json.decode(jsonString);
+    final directory = await getApplicationDocumentsDirectory();
+    File file = File('${directory.path}/program.json'); 
 
-    final workout = data.firstWhere(
-      (workout) => workout['workoutName'] == widget.workoutName,
-      orElse: () => null,
-    );
+    if (await file.exists()) { 
+      String contents = await file.readAsString(); 
+      List<dynamic> data = json.decode(contents);
+      if (contents.isNotEmpty) {
+        final workout = data.firstWhere(
+          (workout) => workout['workoutName'] == widget.workoutName,
+          orElse: () => null,
+        );
 
-    if (workout != null) {
-      setState(() {
-        exercises = workout['exercises'];
-        initializeExercise();
-      });
+        if (workout != null) {
+          setState(() {
+            exercises = workout['exercises'];
+            initializeExercise();
+          });
+        }
+      }
     }
   }
 

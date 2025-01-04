@@ -75,25 +75,37 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
    * message : The message to be printed on the dialog
    */
   void showErrorDialog(String message) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double fontSize = screenHeight * 0.025;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: const Color(0xFF242b35),
-          title: const Text(
+          title: Text(
             'Error',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize
+            ),
           ),
           content: Text(
             message,
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text(
+              child: Text(
                 'OK',
-                style: TextStyle(color: Colors.blue),
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: fontSize * 0.9,
+                ),
               ),
             ),
           ],
@@ -138,10 +150,10 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
             const SizedBox(height: 32),
 
             // Options Text
-            const Text(
+            Text(
               'Choose options:',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -153,7 +165,10 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
               controller: seriesController,
               decoration: InputDecoration(
                 labelText: 'Series',
-                labelStyle: const TextStyle(color: Colors.white),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: fontSize * 0.9
+                ),
                 filled: true,
                 fillColor: const Color(0xFF242b35),
                 border: OutlineInputBorder(
@@ -172,7 +187,10 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
               controller: repetitionsController,
               decoration: InputDecoration(
                 labelText: 'Repetitions',
-                labelStyle: const TextStyle(color: Colors.white),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: fontSize * 0.9
+                ),
                 filled: true,
                 fillColor: const Color(0xFF242b35),
                 border: OutlineInputBorder(
@@ -191,7 +209,10 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
               controller: restTimeController,
               decoration: InputDecoration(
                 labelText: 'Rest time (seconds)',
-                labelStyle: const TextStyle(color: Colors.white),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: fontSize * 0.9
+                ),
                 filled: true,
                 fillColor: const Color(0xFF242b35),
                 border: OutlineInputBorder(

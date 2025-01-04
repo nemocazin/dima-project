@@ -10,6 +10,7 @@ library DIMA;
 
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 import 'add_exercise.dart';
@@ -135,14 +136,14 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                   children: [
                     Icon(
                       Icons.fitness_center,
-                      size: 80, 
+                      size: fontSize * 6, 
                       color: Colors.white.withOpacity(0.5),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       'No exercises selected!',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: fontSize,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -151,7 +152,7 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                     Text(
                       'Add an exercise to get started',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: fontSize,
                         color: Colors.white.withOpacity(0.7),
                       ),
                     ),
@@ -219,7 +220,10 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                     },
                     child: Text(
                       'Add Exercise',
-                      style: TextStyle(fontSize: fontSize),
+                      style: TextStyle(
+                        fontSize: fontSize * 0.9
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -233,7 +237,10 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                     onPressed: () => showSaveDialog(),
                     child: Text(
                       'Save',
-                      style: TextStyle(fontSize: fontSize),
+                      style: TextStyle(
+                        fontSize: fontSize * 0.9
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -251,6 +258,9 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
   void showSaveDialog() async {
     TextEditingController workoutNameController = TextEditingController();
 
+    double screenHeight = MediaQuery.of(context).size.height;
+    double fontSize = screenHeight * 0.025;
+
     /**
      * IF EXERCISES IS EMPTY
      * We show an AlertDialog to say to choose an exercise
@@ -260,20 +270,23 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
         context: context,
         builder: (context) => AlertDialog(
           backgroundColor: const Color(0xFF242b35),
-          title: const Text(
+          title: Text(
             'Please select an exercise!',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: fontSize,
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text(
+              child: Text(
                 'OK',
-                style: TextStyle(color: Colors.blue),
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: fontSize * 0.9,
+                ),
               ),
             ),
           ],
@@ -288,9 +301,12 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
         context: context,
         builder: (context) => AlertDialog(
           backgroundColor: const Color(0xFF242b35),
-          title: const Text(
+          title: Text(
             'Save Workout',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize,
+            ),
           ),
           content: TextField(
             controller: workoutNameController, 
@@ -298,9 +314,13 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
               labelText: 'Workout Name',
               labelStyle: TextStyle(
                 color: Colors.blue,
+                fontSize: fontSize,
               ),
             ),
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize,
+            ),
           ),
           actions: [
             TextButton(
@@ -325,20 +345,29 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                     context: context,
                     builder: (context) => AlertDialog(
                       backgroundColor: const Color(0xFF242b35),
-                      title: const Text(
+                      title: Text(
                         'Error',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: fontSize,
+                        ),
                       ),
-                      content: const Text(
+                      content: Text(
                         'Please enter a workout name.',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: fontSize,
+                        ),
                       ),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text(
+                          child: Text(
                             'OK',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: fontSize * 0.9,
+                            ),
                           ),
                         ),
                       ],
@@ -346,9 +375,12 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                   );
                 }
               },
-              child: const Text(
+              child: Text(
                 'Save',
-                style: TextStyle(color: Colors.blue),
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: fontSize * 0.9,
+                ),
               ),
             ),
           ],
@@ -363,24 +395,26 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
    */
   Future<void> saveProgram(String workoutName, List<List<dynamic>> selectedExercises) async {
     try {
-      final file = File('data/program.json');
+      final directory  = await getApplicationDocumentsDirectory();
+      final File file = File('${directory.path}/program.json');
+      if (!await file.exists()) {
+          await file.create();
+      }
+      final content = await file.readAsString();
 
       // Read the data that are in the JSON file
       List<Map<String, dynamic>> existingWorkouts = [];
-      if (await file.exists()) {
-        String contents = await file.readAsString();
-        if (contents.isNotEmpty) {
-          if (contents.trim().startsWith('[')) {
-            existingWorkouts = List<Map<String, dynamic>>.from(
-              jsonDecode(contents)
-            );
-          } 
-          // In case there is just on object in the file
-          else {
-            existingWorkouts = [
-              Map<String, dynamic>.from(jsonDecode(contents))
-            ];
-          }
+      if (content.isNotEmpty) {
+        if (content.trim().startsWith('[')) {
+          existingWorkouts = List<Map<String, dynamic>>.from(
+            jsonDecode(content)
+          );
+        } 
+        // In case there is just on object in the file
+        else {
+          existingWorkouts = [
+            Map<String, dynamic>.from(jsonDecode(content))
+          ];
         }
       }
 
@@ -396,21 +430,29 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
       String prettyJson = encoder.convert(existingWorkouts);
       prettyJson += '\n';
 
-      // Save with the new programm
+      // Save JSON
       await file.writeAsString(prettyJson);
-      print('The workout program has been correctly saved.');
+
       showDialog(
         context: context, 
         builder: (BuildContext context) {
+          double screenHeight = MediaQuery.of(context).size.height;
+          double fontSize = screenHeight * 0.025;
           return AlertDialog(
             backgroundColor: const Color(0xFF242b35),
             title: Text(
               'Success',
-              style: TextStyle(color: Colors.white)
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: fontSize
+              )
             ),
             content: Text(
               'The workout program has been saved correctly.',
-              style: TextStyle(color: Colors.white), 
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: fontSize
+              ), 
             ),
             actions: [
               TextButton(
@@ -419,7 +461,10 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
                 },
                 child: Text(
                   'OK',
-                  style: TextStyle(color: Colors.blue)
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: fontSize * 0.9
+                  )
                 ),
               ),
             ],
