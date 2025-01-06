@@ -13,6 +13,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; 
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
 
 import 'create_workout.dart';
 import 'schedule.dart';
@@ -35,6 +36,10 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     createFilesIfNotExist();
     loadWorkoutData();
   }

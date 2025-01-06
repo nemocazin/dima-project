@@ -11,6 +11,7 @@ library DIMA;
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
 import 'dart:io';
 
 import 'add_exercise.dart';
@@ -50,6 +51,10 @@ class CreateWorkoutState extends State<CreateWorkoutPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     if (widget.exerciseData != null) {
       setState(() {
         // Add the settings to the exercise before being transferred to the list of selected exercise

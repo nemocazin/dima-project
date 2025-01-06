@@ -11,7 +11,7 @@ library DIMA;
 
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
 import 'exercise_settings.dart';
 
 class AddExercisePage extends StatefulWidget {
@@ -30,6 +30,10 @@ class AddExercisePageState extends State<AddExercisePage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     loadExercisesNames();
   }
 

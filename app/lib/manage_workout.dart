@@ -11,8 +11,9 @@ library DIMA;
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+
 import 'schedule.dart';
 
 class ManageWorkout extends StatefulWidget {
@@ -28,6 +29,10 @@ class ManageWorkoutState extends State<ManageWorkout> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     if (Platform.isIOS || Platform.isAndroid) {
       loadWorkouts();  
     }

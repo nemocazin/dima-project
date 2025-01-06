@@ -33,6 +33,15 @@ class ExerciseSettingPageState extends State<ExerciseSettingPage> {
   final TextEditingController repetitionsController = TextEditingController();
   final TextEditingController restTimeController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
+
   /**
    * @brief Verify that the inputs are all correctly filled
    */

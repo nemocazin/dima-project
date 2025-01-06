@@ -11,11 +11,11 @@ library DIMA;
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'recap_workout.dart';
-import 'main.dart';
 
+import 'main.dart';
 import 'manage_workout.dart';
 
 class WorkoutSchedulePage extends StatefulWidget {
@@ -33,6 +33,10 @@ class WorkoutSchedulePageState extends State<WorkoutSchedulePage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     loadWorkoutPrograms().then((_) {
       loadSchedule().then((_) {
         validateSchedule();
