@@ -14,6 +14,8 @@ import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
 import 'exercise_settings.dart';
 
+const int exerciseNameIndex = 1;
+
 class AddExercisePage extends StatefulWidget {
   const AddExercisePage({super.key});
 
@@ -25,6 +27,7 @@ class AddExercisePageState extends State<AddExercisePage> {
   List<List<dynamic>> exercises = [];
   List<String> exercisesNames = [];
   List<String> filteredExercisesNames = [];
+  List<List<dynamic>> filteredExercises = [];
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -46,7 +49,7 @@ class AddExercisePageState extends State<AddExercisePage> {
     setState(() {
       exercises = const CsvToListConverter().convert(csvData);
       for (int i = 1; i < exercises.length; i++) {
-        exercisesNames.add(exercises[i][1].toString());
+        exercisesNames.add(exercises[i][exerciseNameIndex].toString());
       }
       filteredExercisesNames = List.from(exercisesNames);
     });
@@ -60,9 +63,14 @@ class AddExercisePageState extends State<AddExercisePage> {
    */
   void filterExercisesFromString(String query) {
     setState(() {
-      filteredExercisesNames = exercisesNames.where((name) {
-        return name.toLowerCase().contains(query.toLowerCase());
-      }).toList();
+      filteredExercisesNames = [];
+      filteredExercises = [];
+      for (int i = 0; i < exercisesNames.length; i++) {
+        if (exercisesNames[i].toLowerCase().contains(query.toLowerCase())) {
+          filteredExercisesNames.add(exercisesNames[i]);
+          filteredExercises.add(exercises[i + 1]); 
+        }
+      }
     });
   }
 
@@ -121,12 +129,22 @@ class AddExercisePageState extends State<AddExercisePage> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ExerciseSettingPage(exerciseSelected: exercises[index+1]),
-                        ),
-                      );
+                      if(filteredExercises.isEmpty){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExerciseSettingPage(exerciseSelected: exercises[index + 1]),
+                          ),
+                        );
+                      }
+                      else{
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExerciseSettingPage(exerciseSelected: filteredExercises[index]),
+                          ),
+                        );
+                      }
                     },
                   );
                 },

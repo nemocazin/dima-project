@@ -134,7 +134,7 @@ class TimerPageState extends State<TimerPage> {
   void startRestTimer(int restTime) {
     if (!isPaused) {
       setState(() {
-        timerSeconds = timerSeconds > 0 ? timerSeconds : restTime;
+        timerSeconds = restTime;
         timerLabel = "Resting";
       });
     }
